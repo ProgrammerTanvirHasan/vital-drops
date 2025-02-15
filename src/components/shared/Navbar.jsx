@@ -6,19 +6,19 @@ const Navbar = () => {
   const links = [
     {
       title: "Donate_Blood",
-      path: "/donateBlood",
+      path: "/DonateBlood",
     },
     {
       title: "Find a Donor",
-      path: "/donor",
+      path: "/Donor",
     },
     {
       title: "Blood_Banks",
       path: "/BloodBanks",
     },
     {
-      title: "Events ",
-      path: "/events ",
+      title: "Dashboard ",
+      path: "/Dashboard",
     },
   ];
 

@@ -4,35 +4,62 @@ import { FaFacebook } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className="bg-[#3E5879]  mt-4 rounded-b-xl  ">
-      <footer className="footer footer-center  rounded p-10 text-white h-80">
+    <div className="bg-[#3E5879] mt-4 rounded-b-xl">
+      <footer className="footer footer-center rounded p-10 text-white h-80">
         <nav className="grid grid-flow-col gap-4 text-xl">
-          <a className="link link-hover">About us</a>
-          <a className="link link-hover">Contact</a>
-          <a className="link link-hover">Jobs</a>
-          <a className="link link-hover">Press kit</a>
+          <a className="link link-hover text-lg font-semibold hover:text-blue-300 transition duration-300">
+            About Us
+          </a>
+          <a className="link link-hover text-lg font-semibold hover:text-blue-300transition duration-300">
+            Contact
+          </a>
+          <a className="link link-hover text-lg font-semibold hover:text-blue-300 transition duration-300">
+            Volunteer
+          </a>
+          <a className="link link-hover text-lg font-semibold hover:text-blue-300 transition duration-300">
+            Our Impact
+          </a>
         </nav>
+
         <nav>
-          <div className="grid grid-flow-col gap-4">
-            <a>
-              <FaTwitter className="text-4xl"></FaTwitter>
+          <div className="grid grid-flow-col gap-4 text-3xl mt-6">
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaTwitter className="text-white hover:text-blue-400 transition duration-300" />
             </a>
-            <a>
-              <FaYoutube className="text-4xl"></FaYoutube>
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaYoutube className="text-white hover:text-red-600 transition duration-300" />
             </a>
-            <a>
-              <FaFacebook className="text-4xl"></FaFacebook>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebook className="text-white hover:text-blue-600 transition duration-300" />
             </a>
           </div>
         </nav>
+
+      
         <aside>
-          <p className="border-b-2">
-            Copyright © {new Date().getFullYear()} - All right reserved by ACME
-            Industries Ltd
+          <p className="border-t-2 pt-4 text-sm text-center font-light">
+            ❤️ Join us in the mission to save lives! ❤️
+          </p>
+          <p className="mt-2 text-xs">
+            Copyright © {new Date().getFullYear()} - All rights reserved by
+            Blood Donation Foundation.
           </p>
         </aside>
       </footer>
     </div>
   );
 };
+
 export default Footer;
