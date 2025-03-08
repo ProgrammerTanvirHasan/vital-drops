@@ -43,14 +43,6 @@ const WhyDonotsBlood = () => {
           </div>
         ))}
       </div>
-      <div className="text-center mt-12">
-        <a
-          href="/donateBlood"
-          className="bg-green-900 text-white hover:bg-red-500 px-6 py-2 text-lg"
-        >
-          Become a Donor
-        </a>
-      </div>
     </div>
   );
 };

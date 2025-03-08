@@ -1,38 +1,14 @@
+"use client";
 import { FaHandsHelping, FaHeart, FaTint, FaUsers } from "react-icons/fa";
 import Marquee from "react-fast-marquee";
-const Banner = () => {
-  const statistics = [
-    {
-      id: 1,
-      title: "Registered Donors",
-      value: "12,345",
-      icon: <FaUsers />,
-    },
-    {
-      id: 2,
-      title: "Blood Donations",
-      value: "8,765",
-      icon: <FaTint />,
-    },
-    {
-      id: 3,
-      title: "Lives Saved",
-      value: "5,432",
-      icon: <FaHeart />,
-    },
-    {
-      id: 4,
-      title: "Volunteers Engaged",
-      value: "2,100",
-      icon: <FaHandsHelping />,
-    },
-  ];
 
+import Link from "next/link";
+const Banner = () => {
   return (
     <div>
       <div className="bg-slate-700 ">
         <div className=" min-h-[650px] flex items-center justify-center text-white ">
-          <div className="text-center max-w-3xl px-4 shadow-xl p-4 glass">
+          <div className="text-center max-w-3xl px-4 shadow-xl p-4 lg:glass">
             <h1 className="text-4xl font-bold mb-4">
               Donate Blood, Save Lives ❤️
             </h1>
@@ -44,9 +20,11 @@ const Banner = () => {
               Be a hero today—give the gift of life and inspire others to do the
               same!
             </p>
-            <button className="btn bg-green-600 mt-36 hover:text-red-500 hover:bg-black text-white text-lg">
-              For Help
-            </button>
+            <Link href={"/signUp"}>
+              <button className="btn bg-green-600 mt-36 hover:text-red-500 hover:bg-black text-white text-lg">
+                SignUp
+              </button>
+            </Link>
           </div>
         </div>
         <div className="  text-gray-900 px-6">
@@ -79,5 +57,31 @@ const Banner = () => {
     </div>
   );
 };
+const statistics = [
+  {
+    id: 1,
+    title: "Registered Donors",
+    value: "12,345",
+    icon: <FaUsers />,
+  },
+  {
+    id: 2,
+    title: "Blood Donations",
+    value: "8,765",
+    icon: <FaTint />,
+  },
+  {
+    id: 3,
+    title: "Lives Saved",
+    value: "5,432",
+    icon: <FaHeart />,
+  },
+  {
+    id: 4,
+    title: "Volunteers Engaged",
+    value: "2,100",
+    icon: <FaHandsHelping />,
+  },
+];
 
 export default Banner;

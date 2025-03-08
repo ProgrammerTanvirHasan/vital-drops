@@ -15,13 +15,10 @@ const Volunteers = () => {
             <h2 className="text-xl font-semibold text-blue-600 flex justify-between">
               {volunteer.name}
               <Image
-                src={
-                  volunteer.img ||
-                  "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                }
+                src={volunteer.img}
                 alt="Picture of the author"
-                width={300}
-                height={350}
+                width="300"
+                height="300"
               />
             </h2>
             <p className="text-gray-600">Role: {volunteer.role}</p>

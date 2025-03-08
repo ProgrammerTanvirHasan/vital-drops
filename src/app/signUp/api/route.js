@@ -19,6 +19,7 @@ export const POST = async (request) => {
       ...user,
       password: hashPassword,
     });
+
     return NextResponse.json(
       { message: "User created successfully" },
       { status: 200 }

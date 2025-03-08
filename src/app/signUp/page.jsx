@@ -8,6 +8,7 @@ import { MdEmail } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import SocialSignIn from "@/components/shared/socialSignIn";
 
 const signUp = () => {
   const router = useRouter();
@@ -17,7 +18,10 @@ const signUp = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const user = { name, email, password };
+    const role = form.role.value;
+    // const image = form.image.value;
+    const user = { name, email, password, role };
+    
 
     try {
       const resp = await axios.post("http://localhost:3000/signUp/api", user, {
@@ -42,6 +46,7 @@ const signUp = () => {
         icon: "error",
       });
     }
+    
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -79,6 +84,30 @@ const signUp = () => {
               />
             </div>
 
+            {/* <div className="relative mb-4">
+              <label>
+                <p className="text-xl">Photo</p>
+              </label>
+              <input
+                name="image"
+                type="file"
+                className="  p-2  bg-orange-900  focus:ring-2 focus:ring-blue-400 text-white rounded-md  outline-none"
+              />
+            </div> */}
+
+            <div className="relative mb-4">
+              <select
+                defaultValue="User"
+                name="role"
+                className=" mb-4 w-full p-2  bg-orange-900 border focus:ring-2 focus:ring-blue-400 text-white rounded-md  outline-none"
+              >
+                <option disabled={true}>User</option>
+                <option>Admin</option>
+                <option>Volunteer</option>
+                <option>User</option>
+              </select>
+            </div>
+
             <div className="relative mb-4">
               <MdEmail className="absolute left-3 top-3 text-gray-400"></MdEmail>
               <input
@@ -113,20 +142,7 @@ const signUp = () => {
               SIGN UP
             </button>
 
-            <div className="flex justify-between pt-2">
-              <button
-                type="button"
-                className="text-orange-300 bg-slate-950 glass btn"
-              >
-                GOOGLE LOGIN
-              </button>
-              <button
-                type="button"
-                className="text-orange-300 bg-slate-950 glass btn "
-              >
-                GITHUB LOGIN
-              </button>
-            </div>
+            <SocialSignIn></SocialSignIn>
           </form>
         </div>
 

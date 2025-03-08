@@ -5,14 +5,41 @@ import { useState } from "react";
 import { FaLock, FaRegEyeSlash } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { RxEyeOpen } from "react-icons/rx";
-
+import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
+import Swal from "sweetalert2";
+import SocialSignIn from "@/components/shared/socialSignIn";
 const Login = () => {
+  const searchParams = useSearchParams();
+
+  const path = searchParams.get("redirect");
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    const user = { email, password };
-    console.log(user, "user");
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    const resp = await signIn("credentials", {
+      email,
+      password,
+      redirect: true,
+      callbackUrl: path ? path : "/",
+    });
+   
+    if (resp?.error) {
+      Swal.fire({
+        title: "Login Failed",
+        text: resp.error,
+        icon: "error",
+      });
+    } else {
+      Swal.fire({
+        title: "Logge In",
+        text: "credential Login successfully",
+        icon: "success",
+      });
+    }
   };
   const [showPassword, setShowPassword] = useState(false);
   return (
@@ -73,20 +100,7 @@ const Login = () => {
               LOGIN
             </button>
 
-            <div className="flex justify-between pt-2">
-              <button
-                type="button"
-                className="text-orange-300 bg-slate-950 glass btn"
-              >
-                GOOGLE LOGIN
-              </button>
-              <button
-                type="button"
-                className="text-orange-300 bg-slate-950 glass btn "
-              >
-                GITHUB LOGIN
-              </button>
-            </div>
+            <SocialSignIn></SocialSignIn>
           </form>
         </div>
         <p className="p-4 text-black bg-white px-2 rounded-b-xl rounded-l-xl ">

@@ -1,29 +1,17 @@
+"use client";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { BiSolidDonateBlood } from "react-icons/bi";
 import { RiMenu2Line } from "react-icons/ri";
 const Navbar = () => {
-  const links = [
-    {
-      title: "Donate_Blood",
-      path: "/DonateBlood",
-    },
-    {
-      title: "Find a Donor",
-      path: "/Donor",
-    },
-    {
-      title: "Blood_Banks",
-      path: "/BloodBanks",
-    },
-    {
-      title: "Dashboard ",
-      path: "/Dashboard",
-    },
-  ];
+  const pathName = usePathname();
+
+  const session = useSession();
 
   return (
-    <div className="navbar  bg-[#3E5879] text-white fixed">
+    <div className="navbar  bg-[#3E5879] text-white fixed lg:py-4">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -34,7 +22,11 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100  mt-3 w-36 p-2 text-green-900  "
           >
             {links.map((link) => (
-              <Link key={link.path} href={`/${link.path}`}>
+              <Link
+                className={`${pathName === link?.path && "text-orange-600"}`}
+                key={link.path}
+                href={link.path}
+              >
                 {link.title}
               </Link>
             ))}
@@ -48,19 +40,62 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 space-x-4">
           {links.map((link) => (
-            <Link key={link.path} href={`/${link.path}`}>
+            <Link
+              className={`${pathName === link?.path && "text-cyan-300"}`}
+              key={link.path}
+              href={link.path}
+            >
               {link.title}
             </Link>
           ))}
         </ul>
       </div>
-      <div className="navbar-end">
-        <a href="/login" className="btn">
-          LogIn
-        </a>
-      </div>
+
+      {session.status === "loading" ? (
+        <h1>Loading...</h1>
+      ) : session.status === "authenticated" ? (
+        <div className="navbar-end">
+          <button
+            onClick={() => signOut()}
+            className="btn bg-orange-900 text-white hover:bg-black"
+          >
+            Sign Out
+          </button>
+        </div>
+      ) : (
+        <div className="navbar-end">
+          <a
+            href="/login"
+            className="btn bg-green-600 text-white hover:bg-black text-lg"
+          >
+            Sign In
+          </a>
+        </div>
+      )}
     </div>
   );
 };
+const links = [
+  {
+    title: "Donate_Blood",
+    path: "/donateBlood",
+  },
+  {
+    title: "Find a Donor",
+    path: "/donor",
+  },
+  {
+    title: "Blood_Banks",
+    path: "/bloodBanks",
+  },
+  {
+    title: "Todays blood",
+    path: "/todaysBloodRequest",
+  },
+  {
+    title: "Dashboard ",
+    path: "/dashboard",
+  },
+];
 
 export default Navbar;

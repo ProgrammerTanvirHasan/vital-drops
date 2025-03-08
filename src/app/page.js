@@ -2,7 +2,7 @@ import HomePage from "@/components/homePage/HomePage";
 
 export default function Home() {
   return (
-    <div >
+    <div>
       <HomePage></HomePage>
     </div>
   );
