@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 const DonateForm = () => {
   const session = useSession();
+  console.log({ session }, "donateblood");
   const handleDonorData = async (e) => {
     e.preventDefault();
     const form = e.target;

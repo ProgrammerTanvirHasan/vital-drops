@@ -1,4 +1,4 @@
-import DonateForm from "./donateForm/DonateForm";
+import DonateForm from "@/app/donateBlood/donateForm/DonateForm";
 
 export const metadata = {
   title: {

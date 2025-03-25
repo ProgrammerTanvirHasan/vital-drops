@@ -19,9 +19,19 @@ const signUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const role = form.role.value;
-    // const image = form.image.value;
-    const user = { name, email, password, role };
-    
+    const imageFile = form.image.files[0];
+
+    const formData = new FormData();
+    formData.append("image", imageFile);
+
+    const response = await axios.post(
+      `https://api.imgbb.com/1/upload?key=a9b9160b05e3d4e68e60f154f621c349`,
+      formData
+    );
+
+    const image = response?.data?.data?.display_url;
+
+    const user = { name, email, password, role, image };
 
     try {
       const resp = await axios.post("http://localhost:3000/signUp/api", user, {
@@ -46,7 +56,6 @@ const signUp = () => {
         icon: "error",
       });
     }
-    
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -84,16 +93,13 @@ const signUp = () => {
               />
             </div>
 
-            {/* <div className="relative mb-4">
-              <label>
-                <p className="text-xl">Photo</p>
-              </label>
+            <div className="relative mb-4">
               <input
                 name="image"
                 type="file"
-                className="  p-2  bg-orange-900  focus:ring-2 focus:ring-blue-400 text-white rounded-md  outline-none"
+                className=" w-full p-2  bg-orange-900  focus:ring-2 focus:ring-blue-400 text-white rounded-md  outline-none"
               />
-            </div> */}
+            </div>
 
             <div className="relative mb-4">
               <select

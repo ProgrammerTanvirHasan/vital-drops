@@ -1,18 +1,13 @@
 import { connectDB } from "@/lib/connectDB";
 import { NextResponse } from "next/server";
 
-export const GET = async (request) => {
+export const GET = async () => {
   try {
     const db = await connectDB();
-    const { searchParams } = new URL(request.url);
-    const district = searchParams.get("district");
 
     const bankGroupCollection = db.collection("bankGroup");
-    let query = {};
-    if (district) {
-      query = { district: district };
-    }
-    const resp = await bankGroupCollection.find(query).toArray();
+
+    const resp = await bankGroupCollection.find().toArray();
 
     return NextResponse.json(resp, { status: 200 });
   } catch (error) {

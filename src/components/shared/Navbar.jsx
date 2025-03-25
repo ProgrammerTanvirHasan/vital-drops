@@ -77,8 +77,8 @@ const Navbar = () => {
 };
 const links = [
   {
-    title: "Donate_Blood",
-    path: "/donateBlood",
+    title: "All Post",
+    path: "/allPost",
   },
   {
     title: "Find a Donor",
@@ -89,7 +89,7 @@ const links = [
     path: "/bloodBanks",
   },
   {
-    title: "Todays blood",
+    title: "Todays patient",
     path: "/todaysBloodRequest",
   },
   {

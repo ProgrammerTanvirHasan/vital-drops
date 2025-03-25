@@ -4,18 +4,13 @@ import { NextResponse } from "next/server";
 
 export const GET = async (request, { params }) => {
   try {
-    const id = params.id;
     const db = await connectDB();
-
-    const bankGroupCollection = db.collection("bankGroup");
-
-    const resp = await bankGroupCollection.findOne({
-      _id: new ObjectId(id),
+    const patientInfoCollection = db.collection("PatientInfo");
+    const resp = await patientInfoCollection.findOne({
+      _id: new ObjectId(params.id),
     });
-
     return NextResponse.json(resp, { status: 200 });
   } catch (error) {
-    console.error("Database error:", error);
     return NextResponse.json(
       { message: "Something went wrong", error: error.message },
       { status: 504 }
@@ -25,28 +20,21 @@ export const GET = async (request, { params }) => {
 
 export const PATCH = async (request, { params }) => {
   try {
-    const id = params.id;
-    const updatedDoc = await request.json();
-    console.log(updatedDoc, "updateddoc");
     const db = await connectDB();
-
-    const bankGroupCollection = db.collection("bankGroup");
-
-    const resp = await bankGroupCollection.updateOne(
+    const patientInfoCollection = db.collection("PatientInfo");
+    const updatedDoc = await request.json();
+    const resp = await patientInfoCollection.updateOne(
       {
-        _id: new ObjectId(id),
+        _id: new ObjectId(params.id),
       },
       {
-        $set: updatedDoc,
-      },
-      {
-        upsert: true,
+        $push: {
+          comments: updatedDoc.comments,
+        },
       }
     );
-
-    return NextResponse.json(resp, { status: 200 });
+    return NextResponse.json(resp, { message: "Comment added successfully" });
   } catch (error) {
-    console.error("Database error:", error);
     return NextResponse.json(
       { message: "Something went wrong", error: error.message },
       { status: 504 }

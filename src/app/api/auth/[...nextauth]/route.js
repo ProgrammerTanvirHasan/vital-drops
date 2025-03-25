@@ -4,6 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
 
 export const authOptions = {
   secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
@@ -42,6 +43,7 @@ export const authOptions = {
           email: currentUser?.email,
           name: currentUser?.name,
           role: currentUser?.role,
+          image: currentUser?.image,
         };
       },
     }),
@@ -54,11 +56,22 @@ export const authOptions = {
       clientId: process.env.NEXT_PUBLIC_GITHUB_ID,
       clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET,
     }),
+    FacebookProvider({
+      clientId: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_SECRET,
+    }),
   ],
 
   callbacks: {
-    async signIn({ account, user }) {
-      if (account.provider === "google" || account.provider === "github") {
+    async signIn({ account, user, profile }) {
+      if (account.provider === "facebook") {
+        user.id = profile.id;
+      }
+      if (
+        account.provider === "google" ||
+        account.provider === "github" ||
+        account.provider === "facebook"
+      ) {
         const { name, email, image } = user;
         try {
           const db = await connectDB();
@@ -87,18 +100,28 @@ export const authOptions = {
         return user;
       }
     },
-    async jwt({ token, user }) {
-      if (user) {
-        token.role = user.role || "User";
-      }
 
+    async jwt({ token, account, profile, user }) {
+      if (account && profile) {
+        if (account.provider === "facebook") {
+          token.facebookId = profile.id;
+        }
+        token.role = user.role || "User";
+        token.email = user.email;
+        token.image = user.image || token.image || "";
+      }
       return token;
     },
     async session({ session, token }) {
       if (token) {
         session.user.role = token.role || "User";
         session.user.email = token.email || "";
+        session.user.image = token.image || "";
+        if (token.facebookId) {
+          session.user.facebookProfile = `https://www.facebook.com/${token.facebookId}`;
+        }
       }
+
       return session;
     },
   },

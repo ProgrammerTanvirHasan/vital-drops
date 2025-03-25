@@ -83,7 +83,7 @@ const FindDonor = () => {
                   <Image
                     src={
                       donor.image ||
-                      "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                      "https://lh3.googleusercontent.com/a/ACg8ocLxZOVdFRf5BVA2m0luimaB5QkQaHoKETLZ4CWAnGQfqjt4N_YX=s96-c"
                     }
                     alt="Donor profile"
                     height={250}

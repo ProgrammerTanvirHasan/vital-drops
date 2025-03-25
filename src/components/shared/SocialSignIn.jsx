@@ -2,7 +2,6 @@
 
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
-import Swal from "sweetalert2";
 
 const SocialSignIn = () => {
   const searchParams = useSearchParams();
@@ -23,6 +22,13 @@ const SocialSignIn = () => {
         className="text-orange-300 bg-slate-950 glass btn hover:bg-black "
       >
         GOOGLE LOGIN
+      </button>
+      <button
+        onClick={() => handlesocialSign("facebook")}
+        type="button"
+        className="text-orange-300 bg-slate-950 glass hover:bg-black btn "
+      >
+        FACEBOOK
       </button>
       <button
         onClick={() => handlesocialSign("github")}
