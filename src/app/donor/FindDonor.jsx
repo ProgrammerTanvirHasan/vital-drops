@@ -30,6 +30,7 @@ const FindDonor = () => {
       fetchDonor();
     }
   }, [selectedBlood]);
+ 
 
   return (
     <div className="min-h-screen shadow-2xl ">
@@ -81,10 +82,7 @@ const FindDonor = () => {
               <div className="lg:flex flex-row-reverse justify-around">
                 <div>
                   <Image
-                    src={
-                      donor.image ||
-                      "https://lh3.googleusercontent.com/a/ACg8ocLxZOVdFRf5BVA2m0luimaB5QkQaHoKETLZ4CWAnGQfqjt4N_YX=s96-c"
-                    }
+                    src={donor.image}
                     alt="Donor profile"
                     height={250}
                     width={250}

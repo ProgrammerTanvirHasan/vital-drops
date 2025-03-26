@@ -14,6 +14,8 @@ const yourPost = () => {
     const post = form.post.value;
     const imageFile = form.image.files[0];
 
+    const time = new Date().toLocaleString();
+
     const formData = new FormData();
     formData.append("image", imageFile);
 
@@ -30,8 +32,8 @@ const yourPost = () => {
       userName: session.data?.user?.name,
       userID: session.data?.user?.facebookProfile || "",
       email: session?.data?.user?.email,
+      time,
     };
-    console.log(postData, "postdata");
 
     try {
       const resp = await axios.post(
@@ -43,7 +45,7 @@ const yourPost = () => {
           },
         }
       );
-      console.log(resp, "resp");
+
       if (resp.status === 200) {
         Swal.fire({
           title: "Added",

@@ -6,7 +6,9 @@ import Swal from "sweetalert2";
 
 const DonateForm = () => {
   const session = useSession();
-  console.log({ session }, "donateblood");
+  const name = session?.data?.user?.name;
+  const email = session?.data?.user?.email;
+
   const handleDonorData = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -19,8 +21,18 @@ const DonateForm = () => {
     const address = form.address.value;
     const fullAddress = form.fullAddress.value;
     const currentDate = new Date().toLocaleDateString();
-    const image = session.data.user.image;
     const terms = form.terms.checked;
+    const imageFile = form.image.files[0];
+
+    const formData = new FormData();
+    formData.append("image", imageFile);
+
+    const response = await axios.post(
+      `https://api.imgbb.com/1/upload?key=a9b9160b05e3d4e68e60f154f621c349`,
+      formData
+    );
+
+    const image = response?.data?.data?.display_url;
 
     const donor = {
       name,
@@ -32,9 +44,10 @@ const DonateForm = () => {
       address,
       fullAddress,
       currentDate,
-      image,
       terms,
+      image,
     };
+    console.log(donor, "donor");
 
     try {
       const resp = await axios.post(
@@ -73,6 +86,7 @@ const DonateForm = () => {
               <p>Enter your name</p>
             </label>
             <input
+              defaultValue={name}
               name="name"
               type="text"
               placeholder="Name"
@@ -101,16 +115,29 @@ const DonateForm = () => {
           </div>
         </div>
 
-        <div className="relative mb-4">
-          <label>
-            <p>Email</p>
-          </label>
-          <input
-            name="email"
-            type="email"
-            placeholder="Email"
-            className="w-64 p-2 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
-          />
+        <div className="lg:flex justify-between">
+          <div className="relative mb-4">
+            <label>
+              <p>Email</p>
+            </label>
+            <input
+              defaultValue={email}
+              name="email"
+              type="email"
+              placeholder="Email"
+              className="w-64 p-2 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
+            />
+          </div>
+          <div className="relative mb-4">
+            <label>
+              <p>image</p>
+            </label>
+            <input
+              name="image"
+              type="file"
+              className="w-64 p-2 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
+            />
+          </div>
         </div>
 
         <div className="relative mb-4">

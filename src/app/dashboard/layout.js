@@ -81,6 +81,12 @@ export default function RootLayout({ children }) {
                         4.You can post here !
                       </button>
                     </a>
+
+                    <a href="/dashboard/regDonor">
+                      <button className="glass mb-4">
+                        5.All Registered Donor
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>
