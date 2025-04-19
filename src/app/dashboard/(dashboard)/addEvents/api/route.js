@@ -1,6 +1,11 @@
 import { connectDB } from "@/lib/connectDB";
 import { NextResponse } from "next/server";
-
+const corsHeaders = {
+  "Access-Control-Allow-Origin":
+    "https://vital-drops-mhcycuafp-tanvirs-projects-83d6fcaf.vercel.app",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
 export const POST = async (request) => {
   const events = await request.json();
   try {
@@ -29,5 +34,3 @@ export const GET = async () => {
     );
   }
 };
-
-
