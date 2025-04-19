@@ -1,5 +1,4 @@
 import Banner from "../banner/Banner";
-import Donors from "../donors/Donors";
 import Events from "../events/Events";
 import SuccessStories from "../successStories/SuccessStories";
 import Volunteers from "../volunteers/Volunteers";
@@ -10,7 +9,6 @@ const HomePage = () => {
   return (
     <div className="space-y-16">
       <Banner></Banner>
-      <Donors></Donors>
       <WhyDonotsBlood></WhyDonotsBlood>
       <WhoCanDonot></WhoCanDonot>
       <Volunteers></Volunteers>
