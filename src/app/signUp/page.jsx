@@ -109,7 +109,6 @@ const signUp = () => {
               >
                 <option disabled={true}>User</option>
                 <option>Admin</option>
-                <option>Volunteer</option>
                 <option>User</option>
               </select>
             </div>

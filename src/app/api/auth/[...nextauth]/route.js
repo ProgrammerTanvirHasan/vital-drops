@@ -88,9 +88,11 @@ export const authOptions = {
               image,
               role: "User",
             };
-            const resp = await userCollection.insertOne(newUser);
+            await userCollection.insertOne(newUser);
+            user.role = "User";
             return user;
           } else {
+            user.role = exist.role || "User";
             return user;
           }
         } catch (error) {
@@ -102,16 +104,20 @@ export const authOptions = {
     },
 
     async jwt({ token, account, profile, user }) {
-      if (account && profile) {
-        if (account.provider === "facebook") {
-          token.facebookId = profile.id;
-        }
+      if (user) {
         token.role = user.role || "User";
         token.email = user.email;
+        token.name = user.name;
         token.image = user.image || token.image || "";
       }
+
+      if (account && profile && account.provider === "facebook") {
+        token.facebookId = profile.id;
+      }
+
       return token;
     },
+
     async session({ session, token }) {
       if (token) {
         session.user.role = token.role || "User";
@@ -129,6 +135,8 @@ export const authOptions = {
   pages: {
     signIn: "/login",
   },
+
+  debug: process.env.NODE_ENV === "development",
 };
 
 const handler = NextAuth(authOptions);
