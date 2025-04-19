@@ -21,7 +21,8 @@ export default function UnauthorizedPage() {
           403
         </motion.h1>
         <p className="text-lg text-gray-700 mb-6">
-          You do not have permission to view this page.
+          You do not have permission to view this page.{" "}
+          <span className="text-red-400">Only Admin !</span>
         </p>
         <motion.div whileHover={{ scale: 1.05 }}>
           <Link

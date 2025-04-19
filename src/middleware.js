@@ -26,7 +26,7 @@ export async function middleware(request) {
 
   if (!isAdmin && protectedRoutes.includes(pathname)) {
     return NextResponse.redirect(
-      new URL(`/login?redirect=${pathname}`, request.url)
+      new URL(`/unauthorized?redirect=${pathname}`, request.url)
     );
   }
 
