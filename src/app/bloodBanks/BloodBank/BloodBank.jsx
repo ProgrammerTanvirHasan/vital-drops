@@ -17,7 +17,7 @@ const BloodBank = () => {
       if (selectedDistrict) {
         try {
           const resp = await fetch(
-            `http://localhost:3000/bloodBanks/BloodBank/api/getall?district=${selectedDistrict}`
+            `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/api/getall?district=${selectedDistrict}`
           );
           if (!resp.ok) throw new Error("Failed to fetch blood bank data");
 

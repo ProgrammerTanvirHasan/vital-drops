@@ -15,7 +15,7 @@ const Page = ({ params }) => {
     const cabinRent = async () => {
       try {
         const resp = await fetch(
-          `http://localhost:3000/bloodBanks/BloodBank/api/${param.id}`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/api/${param.id}`
         );
         const data = await resp.json();
         setRent(data);
@@ -62,7 +62,7 @@ const Page = ({ params }) => {
 
     try {
       const resp = await axios.post(
-        `http://localhost:3000/bloodBanks/BloodBank/checkOut/api/${param.id}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/checkOut/api/${param.id}`,
         userDetails,
         { headers: { "Content-Type": "application/json" } }
       );

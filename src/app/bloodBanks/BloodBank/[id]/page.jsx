@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const page = async ({ params }) => {
   const resp = await fetch(
-    `http://localhost:3000/bloodBanks/BloodBank/api/${params.id}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/api/${params.id}`
   );
   const data = await resp.json();
 

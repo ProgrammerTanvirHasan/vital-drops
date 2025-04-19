@@ -17,7 +17,7 @@ export const POST = async (req) => {
       { paymentID: tran_id },
       { $set: { status: "completed" } }
     );
-    const clientRedirectURL = `http://localhost:3000/bloodBanks/success?tran_id=${tran_id}`;
+    const clientRedirectURL = `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/success?tran_id=${tran_id}`;
     return NextResponse.redirect(clientRedirectURL);
   } catch (error) {
     console.error("Error:", error);

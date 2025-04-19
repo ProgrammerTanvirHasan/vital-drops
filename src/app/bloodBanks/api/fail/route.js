@@ -10,7 +10,7 @@ export const POST = async (req) => {
         { status: 404 }
       );
     }
-    const clientRedirectURL = `http://localhost:3000/bloodBanks/fail?tran_id=${tran_id}`;
+    const clientRedirectURL = `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/fail?tran_id=${tran_id}`;
     return NextResponse.redirect(clientRedirectURL, 307);
   } catch (error) {
     console.error("Fail Route Error:", error);

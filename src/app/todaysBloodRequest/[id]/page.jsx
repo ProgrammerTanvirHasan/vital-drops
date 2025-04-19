@@ -14,7 +14,7 @@ const Page = ({ params }) => {
     const fetchData = async () => {
       try {
         const resp = await fetch(
-          `http://localhost:3000/todaysBloodRequest/api/${id}`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/todaysBloodRequest/api/${id}`
         );
         const result = await resp.json();
         setData(result);
@@ -45,7 +45,7 @@ const Page = ({ params }) => {
 
     try {
       const resp = await fetch(
-        `http://localhost:3000/todaysBloodRequest/api/${id}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/todaysBloodRequest/api/${id}`,
         {
           method: "PATCH",
           headers: {

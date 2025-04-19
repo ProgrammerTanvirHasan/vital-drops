@@ -13,7 +13,7 @@ const page = ({ params }) => {
     const bloodBank = async () => {
       try {
         const resp = await fetch(
-          `http://localhost:3000/bloodBanks/BloodBank/api/${params.id}`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/api/${params.id}`
         );
         if (!resp.ok) {
           throw new Error("Failed to fetch blood bank data");
@@ -74,7 +74,7 @@ const page = ({ params }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/bloodBanks/BloodBank/api/${data._id}
+        `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/api/${data._id}
 `,
         {
           method: "PATCH",
