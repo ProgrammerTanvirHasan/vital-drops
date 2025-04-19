@@ -51,7 +51,7 @@ const DonateForm = () => {
 
     try {
       const resp = await axios.post(
-        "http://localhost:3000/donateBlood/donateForm/api",
+        `${process.env.NEXT_PUBLIC_BASE_URL}/donateBlood/donateForm/api`,
         donor,
         {
           headers: {

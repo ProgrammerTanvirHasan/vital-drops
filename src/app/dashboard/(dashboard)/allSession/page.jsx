@@ -11,7 +11,7 @@ const AllSession = () => {
     const getBloodBank = async () => {
       try {
         const resp = await axios.get(
-          "http://localhost:3000/dashboard/allSession/api"
+          `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/allSession/api`
         );
         setBanks(resp.data);
       } catch (error) {

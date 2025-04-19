@@ -10,7 +10,9 @@ const AllPost = () => {
   useEffect(() => {
     const allPost = async () => {
       try {
-        const resp = await fetch("http://localhost:3000/allPost/api");
+        const resp = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/allPost/api`
+        );
         const data = await resp.json();
         const sortedData = sortData(data);
         setPost(sortedData);

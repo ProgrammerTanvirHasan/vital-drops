@@ -16,7 +16,7 @@ const BloodRequest = () => {
       try {
         setLoading(true);
         const resp = await fetch(
-          "http://localhost:3000/todaysBloodRequest/api/getall"
+          `${process.env.NEXT_PUBLIC_BASE_URL}/todaysBloodRequest/api/getall`
         );
         if (!resp.ok) throw new Error("Failed to fetch data");
 

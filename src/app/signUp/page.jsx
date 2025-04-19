@@ -34,11 +34,15 @@ const signUp = () => {
     const user = { name, email, password, role, image };
 
     try {
-      const resp = await axios.post("http://localhost:3000/signUp/api", user, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const resp = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/signUp/api`,
+        user,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (resp.status == 200) {
         Swal.fire({

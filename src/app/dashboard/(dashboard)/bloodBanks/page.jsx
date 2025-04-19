@@ -43,7 +43,7 @@ const bank = () => {
 
     try {
       const resp = await axios.post(
-        "http://localhost:3000/dashboard/bloodBanks/api",
+        `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/bloodBanks/api`,
         bankInfo,
         {
           headers: {

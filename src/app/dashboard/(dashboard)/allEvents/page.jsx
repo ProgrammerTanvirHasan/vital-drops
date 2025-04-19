@@ -12,7 +12,7 @@ const AllEvents = () => {
       setLoading(true);
       try {
         const resp = await fetch(
-          "http://localhost:3000/dashboard/addEvents/api"
+          `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/addEvents/api`
         );
         const data = await resp.json();
         setEvents(data);
@@ -41,7 +41,7 @@ const AllEvents = () => {
     if (result.isConfirmed) {
       try {
         const resp = await fetch(
-          `http://localhost:3000/dashboard/deletedItems/${id}`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/deletedItems/${id}`,
           {
             method: "DELETE",
           }

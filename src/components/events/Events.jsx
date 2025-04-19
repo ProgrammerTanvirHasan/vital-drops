@@ -13,7 +13,9 @@ const Events = () => {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const resp = await fetch("http://localhost:3000/dashboard/addEvents/api");
+      const resp = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/addEvents/api`
+      );
       const data = await resp.json();
       const sortedData = [...data].sort(
         (a, b) => parseDate(b.date) - parseDate(a.date)

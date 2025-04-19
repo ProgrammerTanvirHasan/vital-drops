@@ -13,7 +13,7 @@ const FindDonor = () => {
     const fetchDonor = async () => {
       try {
         const resp = await fetch(
-          `http://localhost:3000/donor/api?blood=${selectedBlood}`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/donor/api?blood=${selectedBlood}`
         );
         if (!resp.ok) throw new Error("Failed to fetch donor data");
 
@@ -30,7 +30,6 @@ const FindDonor = () => {
       fetchDonor();
     }
   }, [selectedBlood]);
- 
 
   return (
     <div className="min-h-screen shadow-2xl ">

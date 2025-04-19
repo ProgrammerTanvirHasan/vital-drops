@@ -13,7 +13,7 @@ const viewAllBloodBank = () => {
       setLoading(true);
       try {
         const resp = await fetch(
-          "http://localhost:3000/bloodBanks/BloodBank/api/getall"
+          `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/api/getall`
         );
         const data = await resp.json();
         setBank(data);
@@ -40,7 +40,7 @@ const viewAllBloodBank = () => {
     if (result.isConfirmed) {
       try {
         const resp = await fetch(
-          `http://localhost:3000/dashboard/viewAllBloodBank/deleteBank/${id}`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/viewAllBloodBank/deleteBank/${id}`,
           {
             method: "DELETE",
           }

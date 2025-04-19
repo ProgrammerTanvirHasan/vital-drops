@@ -37,7 +37,7 @@ const bloodRequestForm = () => {
 
     try {
       const resp = await axios.post(
-        "http://localhost:3000/dashboard/bloodRequestForm/api",
+        `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/bloodRequestForm/api`,
         patientDetails,
         {
           headers: {

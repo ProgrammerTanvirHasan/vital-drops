@@ -23,7 +23,7 @@ const page = () => {
 
     try {
       const resp = await axios.post(
-        "http://localhost:3000/dashboard/addEvents/api",
+        `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/addEvents/api`,
         events,
         {
           headers: {
