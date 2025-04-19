@@ -21,7 +21,6 @@ export async function middleware(request) {
     "/dashboard/bloodBanks",
     "/dashboard/addEvents",
     "/dashboard/viewAllBloodBank",
-    "/dashboard/allEvents",
   ];
 
   if (!isAdmin && protectedRoutes.includes(pathname)) {
