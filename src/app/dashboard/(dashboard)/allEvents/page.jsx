@@ -12,7 +12,7 @@ const AllEvents = () => {
       setLoading(true);
       try {
         const resp = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/addEvents/api`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/allEvent/api`
         );
         const data = await resp.json();
         setEvents(data);

@@ -14,7 +14,7 @@ const Events = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       const resp = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/addEvents/api`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/allEvent/api`
       );
       const data = await resp.json();
       const sortedData = [...data].sort(
