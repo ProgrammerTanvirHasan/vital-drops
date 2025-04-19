@@ -8,7 +8,7 @@ import { MdEmail } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import SocialSignIn from "@/components/shared/socialSignIn";
+import SocialSignIn from "@/components/shared/SocialSignIn";
 
 const signUp = () => {
   const router = useRouter();

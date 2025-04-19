@@ -8,7 +8,7 @@ import { RxEyeOpen } from "react-icons/rx";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import Swal from "sweetalert2";
-import SocialSignIn from "@/components/shared/socialSignIn";
+import SocialSignIn from "@/components/shared/SocialSignIn";
 const Login = () => {
   const searchParams = useSearchParams();
 
