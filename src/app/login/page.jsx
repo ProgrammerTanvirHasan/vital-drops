@@ -26,7 +26,7 @@ const Login = () => {
       redirect: true,
       callbackUrl: path ? path : "/",
     });
-   
+
     if (resp?.error) {
       Swal.fire({
         title: "Login Failed",
