@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import { redirect } from "next/dist/server/api-utils";
 import { use, useEffect, useState } from "react";
 
 const Page = ({ params }) => {

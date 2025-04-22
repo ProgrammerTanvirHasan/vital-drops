@@ -1,5 +1,5 @@
 import Footer from "@/components/footer/Footer";
-import Navbar from "@/components/shared/Navbar";
+
 import AuthProvider from "@/services/AuthProvider";
 import { FaHome } from "react-icons/fa";
 import { RiAdminLine } from "react-icons/ri";
@@ -13,14 +13,12 @@ const popins = Poppins({
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${popins.className}`}>
+    <div>
+      <div className={`${popins.className}`}>
         <AuthProvider>
-          <Navbar></Navbar>
-
           <div className="lg:flex gap-4 lg:ml-4">
             {/* sidebar */}
-            <div className="pt-24 min-h-screen">
+            <div className="pt-4 min-h-screen">
               <div className=" flex flex-col  bg-cyan-800  text-white pl-4  min-h-full lg:w-80">
                 <div className="text-2xl border flex gap-2 py-2">
                   <FaHome className="text-3xl"></FaHome>
@@ -96,7 +94,7 @@ export default function RootLayout({ children }) {
           </div>
           <Footer></Footer>
         </AuthProvider>
-      </body>
-    </html>
+      </div>
+    </div>
   );
 }

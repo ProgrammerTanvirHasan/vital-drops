@@ -6,11 +6,13 @@ import { useEffect, useState } from "react";
 const FindDonor = () => {
   const [donors, setDonors] = useState([]);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [selectedBlood, setSelectedBlood] = useState("");
 
   useEffect(() => {
     const fetchDonor = async () => {
+      setLoading(true);
+      setError("");
       try {
         const resp = await fetch(
           `${process.env.NEXT_PUBLIC_BASE_URL}/donor/api?blood=${selectedBlood}`
@@ -21,6 +23,7 @@ const FindDonor = () => {
         setDonors(data);
       } catch (err) {
         setError(err.message);
+        setDonors([]);
       } finally {
         setLoading(false);
       }
@@ -32,14 +35,14 @@ const FindDonor = () => {
   }, [selectedBlood]);
 
   return (
-    <div className="min-h-screen shadow-2xl ">
-      <div className="container mx-auto ">
+    <div className="min-h-screen shadow-2xl">
+      <div className="container mx-auto">
         <div className="relative mb-4">
           <label>
             <p>Find Your Donor</p>
           </label>
           <select
-            name="district"
+            name="blood"
             onChange={(e) => setSelectedBlood(e.target.value)}
             className="p-2 w-64 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
           >
@@ -55,7 +58,8 @@ const FindDonor = () => {
           </select>
         </div>
       </div>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      {error && <p className="text-red-600 text-center">{error}</p>}
 
       {loading ? (
         <div className="ml-12">
@@ -85,7 +89,7 @@ const FindDonor = () => {
                     alt="Donor profile"
                     height={250}
                     width={250}
-                  ></Image>
+                  />
                 </div>
                 <div>
                   <p>
@@ -121,11 +125,11 @@ const FindDonor = () => {
             </li>
           ))}
         </ul>
-      ) : (
+      ) : selectedBlood && !loading ? (
         <p className="text-xl text-red-700 container mx-auto">
-          No donors found !
+          No donors found!
         </p>
-      )}
+      ) : null}
     </div>
   );
 };

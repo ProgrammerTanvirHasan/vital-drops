@@ -26,7 +26,7 @@ export const POST = async (req) => {
     return new NextResponse(null, {
       status: 302,
       headers: {
-        Location: `http://localhost:3000/paymentSection/status/${status}?tran_id=${tran_id}`,
+        Location: `${process.env.NEXT_PUBLIC_BASE_URL}/paymentSection/status/${status}?tran_id=${tran_id}`,
       },
     });
   } catch (error) {

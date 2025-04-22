@@ -11,23 +11,24 @@ const BloodBank = () => {
 
   useEffect(() => {
     const fetchBloodBanks = async () => {
+      if (!selectedDistrict) return;
+
       setLoading(true);
       setError("");
 
-      if (selectedDistrict) {
-        try {
-          const resp = await fetch(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/api/getall?district=${selectedDistrict}`
-          );
-          if (!resp.ok) throw new Error("Failed to fetch blood bank data");
+      try {
+        const resp = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/api/getall?district=${selectedDistrict}`
+        );
+        if (!resp.ok) throw new Error("Failed to fetch blood bank data");
 
-          const data = await resp.json();
-          setBloodBanks(data);
-        } catch (err) {
-          setError(err.message);
-        } finally {
-          setLoading(false);
-        }
+        const data = await resp.json();
+        setBloodBanks(data);
+      } catch (err) {
+        setError(err.message);
+        setBloodBanks([]);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -59,7 +60,7 @@ const BloodBank = () => {
         </div>
       </div>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="text-red-600 text-center">{error}</p>}
 
       {loading ? (
         <div className="ml-12">
@@ -81,7 +82,7 @@ const BloodBank = () => {
               <li key={bank._id} className="mt-2 p-2 border-b border-gray-300">
                 <strong>{bank.name}</strong> - {bank.FullAddress} (
                 {bank.contact})
-                <div className="flex justify-end">
+                <div className="flex justify-end mt-2">
                   <Link href={`/bloodBanks/BloodBank/${bank._id}`}>
                     <button className="btn bg-green-600 text-red-950">
                       View Details
