@@ -5,8 +5,8 @@ export const POST = async (req) => {
   try {
     const formData = await req.formData();
     const tran_id = formData.get("tran_id");
-
-    console.log("Received transaction ID:", tran_id);
+    const url = new URL(req.url);
+    const status = url.searchParams.get("status");
 
     if (!tran_id) {
       return NextResponse.json(
@@ -17,15 +17,16 @@ export const POST = async (req) => {
 
     const db = await connectDB();
     const paymentCollection = db.collection("payment");
+
     await paymentCollection.updateOne(
       { paymentID: tran_id },
-      { $set: { status: "completed" } }
+      { $set: { status: status || "unknown" } }
     );
 
     return new NextResponse(null, {
       status: 302,
       headers: {
-        Location: `http://localhost:3000/paymentSection/status/success?tran_id=${tran_id}`,
+        Location: `http://localhost:3000/paymentSection/status/${status}?tran_id=${tran_id}`,
       },
     });
   } catch (error) {
