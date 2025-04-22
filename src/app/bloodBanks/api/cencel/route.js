@@ -12,7 +12,7 @@ export const POST = async (req) => {
       );
     }
 
-    const clientRedirectURL = `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/fail?tran_id=${tran_id}`;
+    const clientRedirectURL = `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/cencel?tran_id=${tran_id}`;
     return NextResponse.redirect(clientRedirectURL, 307);
   } catch (error) {
     console.error("Fail Route Error:", error);

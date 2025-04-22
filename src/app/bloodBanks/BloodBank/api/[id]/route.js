@@ -4,13 +4,13 @@ import { NextResponse } from "next/server";
 
 export const GET = async (request, { params }) => {
   try {
-    const id = params.id;
+    const { id } = await params;
     const db = await connectDB();
 
     const bankGroupCollection = db.collection("bankGroup");
 
     const resp = await bankGroupCollection.findOne({
-      _id: new ObjectId(id),
+      _id: new ObjectId(String(id)),
     });
 
     return NextResponse.json(resp, { status: 200 });
@@ -25,7 +25,7 @@ export const GET = async (request, { params }) => {
 
 export const PATCH = async (request, { params }) => {
   try {
-    const id = params.id;
+    const { id } = await params;
     const updatedDoc = await request.json();
     console.log(updatedDoc, "updateddoc");
     const db = await connectDB();
@@ -34,7 +34,7 @@ export const PATCH = async (request, { params }) => {
 
     const resp = await bankGroupCollection.updateOne(
       {
-        _id: new ObjectId(id),
+        _id: new ObjectId(String(id)),
       },
       {
         $set: updatedDoc,

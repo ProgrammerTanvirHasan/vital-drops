@@ -1,8 +1,9 @@
 import Link from "next/link";
 
 const page = async ({ params }) => {
+  const { id } = await params;
   const resp = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/api/${params.id}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/api/${id}`
   );
   const data = await resp.json();
 
@@ -38,7 +39,7 @@ const page = async ({ params }) => {
         </div>
       </div>
       <div>
-        <Link href={`/bloodBanks/BloodBank/cabinRoom/${params.id}`}>
+        <Link href={`/bloodBanks/BloodBank/cabinRoom/${data._id}`}>
           <button className=" bg-red-600 rounded-b-2xl p-2 ml-2 text-white hover:bg-black">
             Show our more feature
           </button>

@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const PaymentCancel = () => {
+const PaymentSuccess = () => {
   const searchParams = useSearchParams();
   const [transactionId, setTransactionId] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -15,20 +15,18 @@ const PaymentCancel = () => {
     } else {
       console.error("Transaction ID missing from URL!");
     }
-    setTimeout(() => setLoading(false), 1000); 
+    setTimeout(() => setLoading(false), 1000);
   }, [searchParams]);
 
   return (
     <div className="flex flex-col justify-center items-center h-screen">
       {loading ? (
         <h1 className="text-xl font-bold text-blue-600">
-          Processing Payment Cancellation...
+          Processing Payment Success...
         </h1>
       ) : (
         <>
-          <h1 className="text-xl font-bold text-red-600">
-            Payment Cancelled ❌
-          </h1>
+          <h1 className="text-xl font-bold text-red-600">Payment Success </h1>
           {transactionId ? (
             <p className="text-gray-600">Transaction ID: {transactionId}</p>
           ) : (
@@ -40,4 +38,4 @@ const PaymentCancel = () => {
   );
 };
 
-export default PaymentCancel;
+export default PaymentSuccess;

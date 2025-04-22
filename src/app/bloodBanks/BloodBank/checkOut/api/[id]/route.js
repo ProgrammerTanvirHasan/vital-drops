@@ -13,7 +13,7 @@ export const POST = async (request) => {
       total_amount: userDetails.ammount,
       currency: "BDT",
       tran_id: trx_id,
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/api/success`,
+      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/payment/success`,
       fail_url: `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/api/fail`,
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/api/cencel`,
       cus_name: "Customer Name",
@@ -39,7 +39,7 @@ export const POST = async (request) => {
 
     const response = await axios.post(
       `https://sandbox.sslcommerz.com/gwprocess/v4/api.php`,
-      qs.stringify(initiateData), // Convert to URL-encoded format
+      qs.stringify(initiateData),
       { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
     );
 
