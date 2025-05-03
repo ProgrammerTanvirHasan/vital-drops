@@ -91,7 +91,7 @@ const yourPost = () => {
               name="post"
               rows="4"
               placeholder="What's on your mind?"
-              className="w-full border border-gray-300 p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none resize-none"
+              className="w-full border text-black border-gray-300 p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none resize-none"
             ></textarea>
           </div>
 

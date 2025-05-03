@@ -106,7 +106,7 @@ const Page = ({ params }) => {
         >
           <textarea
             name="comment"
-            className="w-full border border-gray-300 rounded-md p-3 focus:ring-2 focus:ring-red-400"
+            className="w-full border border-gray-300 text-black rounded-md p-3 focus:ring-2 focus:ring-red-400"
             placeholder="Write your message..."
           ></textarea>
           <div className="mt-4">

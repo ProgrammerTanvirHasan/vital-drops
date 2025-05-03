@@ -60,29 +60,42 @@ const BloodRequestForm = () => {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium">Patient Name</label>
+              <label className="block text-sm font-medium text-black">
+                Patient Name
+              </label>
               <input
                 type="text"
                 name="patientName"
+                defaultValue="patientName"
                 required
-                className="input w-full"
+                className="input w-full bg-base-300 text-black"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium">Age</label>
+              <label className="block text-sm font-medium text-black">
+                Age
+              </label>
               <input
                 type="number"
                 name="age"
+                defaultValue="00"
                 required
-                className="input w-full"
+                className="input w-full bg-base-300 text-black"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium">Blood Group</label>
-              <select name="bloodGroup" required className="select w-full">
+              <label className="block text-sm font-medium text-black">
+                Blood Group
+              </label>
+              <select
+                name="bloodGroup"
+                defaultValue="blood group"
+                required
+                className="select w-full bg-base-300 text-black"
+              >
                 <option value="">Select</option>
                 <option>A+</option>
                 <option>A-</option>
@@ -95,31 +108,35 @@ const BloodRequestForm = () => {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium">Units Needed</label>
+              <label className="block text-sm font-medium text-black">
+                Units Needed
+              </label>
               <input
                 type="number"
                 name="quantity"
+                defaultValue="2"
                 required
-                className="input w-full"
+                className="input w-full bg-base-300 text-black"
               />
             </div>
           </div>
 
           <div className="flex items-center gap-6">
-            <span className="font-medium">Urgent?</span>
+            <span className="font-medium text-black">Urgent?</span>
             <label className="inline-flex items-center">
               <input
                 type="radio"
                 name="urgent"
                 value="yes"
+                defaultChecked
                 required
-                className="radio"
+                className="radio bg-base-300 text-black"
               />
-              <span className="ml-2">Yes</span>
+              <span className="ml-2 text-black">Yes</span>
             </label>
             <label className="inline-flex items-center">
               <input type="radio" name="urgent" value="no" className="radio" />
-              <span className="ml-2">No</span>
+              <span className="ml-2 text-black">No</span>
             </label>
           </div>
 
@@ -127,73 +144,80 @@ const BloodRequestForm = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium">Hospital Name</label>
+              <label className="block text-sm font-medium text-black">
+                Hospital Name
+              </label>
               <input
                 type="text"
                 name="hospitalName"
+                defaultValue="hospitalName"
                 required
-                className="input w-full"
+                className="input w-full bg-base-300 text-black"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium">
+              <label className="block text-sm font-medium text-black">
                 Hospital Address
               </label>
               <input
                 type="text"
                 name="hospitalAddress"
+                defaultValue="hospitalAddress"
                 required
-                className="input w-full"
+                className="input w-full bg-base-300 text-black"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium">
+              <label className="block text-sm font-medium text-black">
                 Contact Number
               </label>
               <input
                 type="tel"
                 name="contactNumber"
+                defaultValue="01700000000"
                 required
-                className="input w-full"
+                className="input w-full bg-base-300 text-black"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium">
+              <label className="block text-sm font-medium text-black">
                 Attendant Name
               </label>
               <input
                 type="text"
                 name="attendantName"
+                defaultValue="attendantName"
                 required
-                className="input w-full"
+                className="input w-full bg-base-300 text-black"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium">
+            <label className="block text-sm font-medium text-black">
               Attendant Contact
             </label>
             <input
               type="tel"
               name="attendentContact"
+              defaultValue="attendentContact"
               required
-              className="input w-full"
+              className="input w-full bg-base-300 text-black"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium">
+            <label className="block text-sm font-medium text-black">
               Additional Information
             </label>
             <textarea
               name="additionalInfo"
-              placeholder="e.g. Dengue, Accident, Surgery..."
+              defaultValue="additionalInfo"
               required
-              className="textarea w-full"
+              className="textarea w-full bg-base-300 text-black"
             />
           </div>
 

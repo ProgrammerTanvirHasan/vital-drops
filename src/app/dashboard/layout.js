@@ -13,13 +13,13 @@ const popins = Poppins({
 export default function RootLayout({ children }) {
   return (
     <div>
-      <div className={`${popins.className}`}>
+      <div className={`${popins.className} `}>
         <AuthProvider>
-          <div className="lg:flex gap-4 ">
+          <div className="lg:flex  ">
             {/* sidebar */}
             <div>
               <div className=" flex flex-col  bg-cyan-800  text-white  min-h-full lg:w-80">
-                <div className="bg-white text-cyan-700 font-bold p-2 rounded-l-full  ">
+                <div className="bg-white text-cyan-700 font-bold p-2 rounded-l-full ">
                   <p className="flex">
                     <RiDashboard2Fill className="text-2xl mr-2"></RiDashboard2Fill>
                     Dashboard

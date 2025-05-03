@@ -68,7 +68,7 @@ const page = () => {
               type="text"
               name="title"
               placeholder="Event Title"
-              className="w-full p-3 border border-gray-300 bg-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 transition-all"
+              className="w-full p-3 border border-gray-300 bg-base-300 rounded-lg focus:ring-2 focus:ring-indigo-500 transition-all"
               required
             />
           </div>
@@ -76,7 +76,7 @@ const page = () => {
             <input
               type="date"
               name="date"
-              className="w-full p-3 border border-gray-300 bg-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 transition-all"
+              className="w-full p-3 border border-gray-300 bg-base-300 rounded-lg focus:ring-2 focus:ring-indigo-500 transition-all"
               required
             />
           </div>
@@ -85,7 +85,7 @@ const page = () => {
               type="text"
               name="location"
               placeholder="Event Location"
-              className="w-full p-3 border border-gray-300 bg-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 transition-all"
+              className="w-full p-3 border border-gray-300 bg-base-300 rounded-lg focus:ring-2 focus:ring-indigo-500 transition-all"
               required
             />
           </div>
@@ -93,7 +93,7 @@ const page = () => {
             <textarea
               name="description"
               placeholder="Event Description"
-              className="w-full p-3 border border-gray-300 bg-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 transition-all"
+              className="w-full p-3 border border-gray-300 bg-base-300 rounded-lg focus:ring-2 focus:ring-indigo-500 transition-all"
               rows="4"
               required
             />

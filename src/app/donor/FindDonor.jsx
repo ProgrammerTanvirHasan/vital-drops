@@ -9,7 +9,6 @@ const FindDonor = () => {
   const [loading, setLoading] = useState(false);
   const [selectedBlood, setSelectedBlood] = useState("");
 
-
   useEffect(() => {
     const fetchDonor = async () => {
       setLoading(true);
@@ -81,7 +80,7 @@ const FindDonor = () => {
         </div>
 
         {!selectedBlood && (
-          <div className="mb-10 bg-white rounded-xl shadow-lg p-6 mx-auto max-w-4xl">
+          <div className="mb-10 bg-white text-black rounded-xl shadow-lg p-6 mx-auto max-w-4xl">
             <h2 className="text-2xl font-bold text-center text-rose-800 mb-4">
               Blood Type Compatibility Chart
             </h2>
@@ -160,8 +159,6 @@ const FindDonor = () => {
             </div>
           </div>
         )}
-
-    
 
         {error && (
           <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-6 rounded shadow">

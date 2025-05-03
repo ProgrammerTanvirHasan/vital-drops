@@ -37,7 +37,7 @@ const WhyDonotsBlood = () => {
           <div key={reason.id} className="shadow-xl p-6 bg-slate-100 ">
             <div className="flex flex-col items-center">
               <div className="text-red-600 text-4xl mb-2">{reason.icon}</div>
-              <h2 className="text-2xl font-bold">{reason.title}</h2>
+              <h2 className="text-2xl font-bold text-black">{reason.title}</h2>
               <p className="text-gray-600 mt-2">{reason.description}</p>
             </div>
           </div>

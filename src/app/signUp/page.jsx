@@ -61,8 +61,8 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex justify-center  bg-base-300 items-center min-h-screen">
-      <div className="w-[75vh] h-[75vh] bg-white rounded-lg shadow-md flex flex-col justify-center px-10 py-6 overflow-auto">
+    <div className="flex justify-center items-center min-h-screen bg-base-300 px-4  pt-4 pb-12">
+      <div className="w-[75vh] h-[100vh] bg-white rounded-lg shadow-md px-6 py-8 overflow-y-auto max-h-screen">
         <h2 className="text-2xl font-bold text-center text-red-800 mb-4">
           Create Account
         </h2>

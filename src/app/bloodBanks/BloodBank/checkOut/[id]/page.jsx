@@ -80,7 +80,7 @@ const Page = ({ params }) => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+    <div className="max-w-4xl mx-auto bg-white text-black p-8 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold mb-6">Checkout</h2>
       <img
         className="h-[400px] min-w-full"

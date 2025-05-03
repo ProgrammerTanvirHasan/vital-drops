@@ -84,7 +84,7 @@ const Bank = () => {
               name="name"
               type="text"
               required
-              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
               placeholder="E.g. Red Cross Center"
             />
           </div>
@@ -96,7 +96,7 @@ const Bank = () => {
               name="contact"
               type="text"
               required
-              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
               placeholder="+8801XXXXXXXXX"
             />
           </div>
@@ -111,7 +111,7 @@ const Bank = () => {
               name="email"
               type="email"
               required
-              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
               placeholder="example@mail.com"
             />
           </div>
@@ -122,7 +122,7 @@ const Bank = () => {
             <input
               name="cabinRent"
               type="number"
-              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
               placeholder="৳ 500"
             />
           </div>
@@ -137,7 +137,7 @@ const Bank = () => {
               name="FullAddress"
               type="text"
               required
-              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
               placeholder="123 Street, Area, District"
             />
           </div>
@@ -150,7 +150,7 @@ const Bank = () => {
               type="file"
               accept="image/*"
               required
-              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
             />
           </div>
         </div>
@@ -164,7 +164,7 @@ const Bank = () => {
               name="blood_types"
               type="text"
               required
-              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
               placeholder="A+, B-, O+, etc."
             />
           </div>
@@ -175,7 +175,7 @@ const Bank = () => {
             <select
               name="district"
               required
-              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
             >
               <option value="">Select a location</option>
               <option value="jamalpur">Jamalpur</option>
@@ -199,7 +199,7 @@ const Bank = () => {
               name="hours"
               type="text"
               required
-              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
               placeholder="E.g. 9am - 5pm"
             />
           </div>
@@ -210,7 +210,7 @@ const Bank = () => {
             <textarea
               name="additional_info"
               rows={4}
-              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
               placeholder="Any other information..."
             />
           </div>

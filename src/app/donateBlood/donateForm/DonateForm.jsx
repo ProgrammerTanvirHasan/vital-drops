@@ -91,7 +91,7 @@ const DonateForm = () => {
                 name="name"
                 type="text"
                 placeholder="Enter your name"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400"
+                className="w-full p-3 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400"
               />
             </div>
 
@@ -101,7 +101,7 @@ const DonateForm = () => {
               </label>
               <select
                 name="blood"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 text-black"
               >
                 <option value="">Select your blood group</option>
                 <option value="AB_PLUS">AB+</option>
@@ -124,7 +124,7 @@ const DonateForm = () => {
                 name="email"
                 type="email"
                 placeholder="Enter your email"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400"
+                className="w-full p-3 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400"
               />
             </div>
 
@@ -135,7 +135,7 @@ const DonateForm = () => {
               <input
                 name="image"
                 type="file"
-                className="w-full p-2.5 border border-gray-300 rounded-lg"
+                className="w-full p-2.5 text-black border border-gray-300 rounded-lg"
               />
             </div>
 
@@ -147,7 +147,7 @@ const DonateForm = () => {
                 name="number"
                 type="number"
                 placeholder="01XXXXXXXXX"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400"
+                className="w-full p-3 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400"
               />
             </div>
 
@@ -158,7 +158,7 @@ const DonateForm = () => {
               <input
                 name="dob"
                 type="date"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400"
+                className="w-full p-3 text-black border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400"
               />
             </div>
 
@@ -169,7 +169,7 @@ const DonateForm = () => {
               <input
                 name="lastDonationDate"
                 type="date"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400"
+                className="w-full text-black p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400"
               />
             </div>
 
@@ -179,7 +179,7 @@ const DonateForm = () => {
               </label>
               <select
                 name="address"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400"
+                className="w-full p-3 text-black border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400"
               >
                 <option value="">Select your district</option>
                 <option value="jamalpur">Jamalpur</option>
@@ -202,7 +202,7 @@ const DonateForm = () => {
               name="fullAddress"
               rows="3"
               placeholder="Enter your full address"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400"
+              className="w-full p-3 text-black border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400"
             />
           </div>
 

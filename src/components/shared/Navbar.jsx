@@ -12,14 +12,14 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="backdrop-blur-md bg-cyan-800 shadow-lg text-white transition-all duration-300">
+    <nav className="backdrop-blur-md bg-cyan-800  shadow-lg text-white transition-all duration-300">
+      <div className="flex justify-end text-xl"></div>
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         <Link href="/" className="flex items-center space-x-2 group">
           <span className="text-xl font-bold  tracking-wider group-hover:text-orange-400 transition">
             Vital Drops
           </span>
         </Link>
-
         <ul className="hidden lg:flex items-center space-x-8 font-medium text-lg">
           {links.map((link) => (
             <li key={link.path}>
@@ -34,7 +34,6 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-
         <div className="hidden lg:block">
           {status === "loading" ? (
             <p className="text-sm animate-pulse">Loading...</p>

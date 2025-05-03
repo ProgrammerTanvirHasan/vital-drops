@@ -91,7 +91,7 @@ const AllSession = () => {
               </div>
               <p className="text-sm">
                 <span className="font-semibold text-red-600">Address:</span>{" "}
-                {bank.FullAddress}
+                <span className="text-black"> {bank.FullAddress}</span>
               </p>
               <p className="text-sm text-gray-700">
                 <span className="font-semibold text-red-600">Info:</span>{" "}

@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-white to-blue-50 px-4">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-white to-blue-50 px-4 ">
       <div className="text-center max-w-2xl p-8 bg-white shadow-xl rounded-2xl border border-gray-200">
         <h1 className="text-4xl font-extrabold text-red-600 tracking-tight leading-tight mb-4">
           Welcome to Blood Donation Dashboard

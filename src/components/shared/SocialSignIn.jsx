@@ -7,37 +7,38 @@ const SocialSignIn = () => {
   const searchParams = useSearchParams();
   const path = searchParams.get("redirect");
 
-  const handlesocialSign = async (provider) => {
-    const resp = await signIn(provider, {
+  const handleSocialSign = async (provider) => {
+    await signIn(provider, {
       redirect: true,
       callbackUrl: path ? path : "/",
     });
   };
 
   return (
-    <div className="flex justify-between pt-2">
+    <div className="flex flex-col lg:flex-row justify-center items-center gap-4 pt-4">
       <button
-        onClick={() => handlesocialSign("google")}
+        onClick={() => handleSocialSign("google")}
         type="button"
-        className="text-orange-300 bg-slate-950 glass btn hover:bg-black "
+        className="w-64 px-6 py-3 text-white bg-red-500 hover:bg-red-600 rounded-xl shadow-lg transition duration-200"
       >
-        GOOGLE LOGIN
+        Continue with Google
       </button>
       <button
-        onClick={() => handlesocialSign("facebook")}
+        onClick={() => handleSocialSign("facebook")}
         type="button"
-        className="text-orange-300 bg-slate-950 glass hover:bg-black btn "
+        className="w-64 px-6 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-lg transition duration-200"
       >
-        FACEBOOK
+        Continue with Facebook
       </button>
       <button
-        onClick={() => handlesocialSign("github")}
+        onClick={() => handleSocialSign("github")}
         type="button"
-        className="text-orange-300 bg-slate-950 glass hover:bg-black btn "
+        className="w-64 px-6 py-3 text-white bg-gray-800 hover:bg-gray-900 rounded-xl shadow-lg transition duration-200"
       >
-        GITHUB LOGIN
+        Continue with GitHub
       </button>
     </div>
   );
 };
+
 export default SocialSignIn;
