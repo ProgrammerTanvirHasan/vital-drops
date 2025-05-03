@@ -2,7 +2,7 @@ const WhoCanDonot = () => {
   return (
     <div>
       <div className="p-8 max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-center text-red-600">
+        <h1 className="text-3xl font-bold text-center text-blue-400">
           Who Can Donate Blood?
         </h1>
 
@@ -76,7 +76,7 @@ const WhoCanDonot = () => {
         <div className="text-center mt-12">
           <a
             href="/dashboard/donateBlood"
-            className="bg-green-900 text-white hover:bg-red-500 px-6 py-2 text-lg"
+            className="block text-center bg-gradient-to-r from-teal-500 to-cyan-500 text-white py-2 rounded-full hover:from-cyan-600 hover:to-teal-600 transition p-2 "
           >
             Become a Donor
           </a>

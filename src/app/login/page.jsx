@@ -2,23 +2,22 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { FaLock, FaRegEyeSlash } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import { RxEyeOpen } from "react-icons/rx";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import Swal from "sweetalert2";
+import { RxEyeOpen } from "react-icons/rx";
+import { FaRegEyeSlash } from "react-icons/fa";
 import SocialSignIn from "@/components/shared/SocialSignIn";
+
 const Login = () => {
   const searchParams = useSearchParams();
-
   const path = searchParams.get("redirect");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
     const resp = await signIn("credentials", {
       email,
@@ -35,82 +34,82 @@ const Login = () => {
       });
     } else {
       Swal.fire({
-        title: "Logge In",
-        text: "credential Login successfully",
+        title: "Logged In",
+        text: "Credential login successful",
         icon: "success",
       });
     }
   };
-  const [showPassword, setShowPassword] = useState(false);
+
   return (
-    <div
-      style={{ backgroundImage: "url('/image/login.png')" }}
-      className="min-h-screen  flex items-center justify-center bg-cover"
-    >
-      <div className="bg-white shadow-lg rounded-lg  p-6 min-w-[500px]">
-        <div
-          style={{ backgroundImage: "url('/image/login.png')" }}
-          className="text-center  p-12 min-h-80"
-        >
-          <h2 className="text-2xl font-bold text-white">Welcome</h2>
-          <p className="text-2xl font-bold text-white">To The Website</p>
-          <p className="text-gray-500 text-sm">Login to access your account.</p>
-          <button className="text-blue-600 font-semibold mt-2 hover:underline">
-            LOGIN ACCOUNT
+    <div className="min-h-screen w-full flex justify-center items-center bg-base-300 ">
+      <div className="w-[75vh] h-[75vh] border rounded-md shadow-md flex flex-col justify-center px-10 py-6">
+        <h2 className="text-2xl font-bold text-center text-red-800 mb-6">
+          Welcome Back!
+        </h2>
+        <form onSubmit={handleLogin} className="space-y-5">
+          <div>
+            <label className="text-sm font-semibold text-gray-600">
+              E-mail
+            </label>
+            <input
+              type="email"
+              name="email"
+              required
+              className="w-full border-b-2 border-gray-300 outline-none py-2 focus:border-red-500"
+            />
+          </div>
+          <div className="relative">
+            <label className="text-sm font-semibold text-gray-600">
+              Password
+            </label>
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              required
+              className="w-full border-b-2 border-gray-300 outline-none py-2 pr-10 focus:border-red-500"
+            />
+            <div
+              className="absolute right-2 top-9 cursor-pointer text-gray-500"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaRegEyeSlash /> : <RxEyeOpen />}
+            </div>
+          </div>
+
+          <div className="text-right">
+            <Link
+              href="/forgot-password"
+              className="text-sm text-red-600 font-semibold"
+            >
+              Forgot password?
+            </Link>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-full transition"
+          >
+            Login
           </button>
-        </div>
 
-        <div className="mt-6">
-          <h3 className="text-center text-gray-700 font-semibold mb-2">
-            USER LOGIN
-          </h3>
-
-          <form onSubmit={handleLogin}>
-            <div className="relative mb-4">
-              <MdEmail className="absolute left-3 top-3 text-gray-400"></MdEmail>
-              <input
-                name="email"
-                type="email"
-                placeholder="UserEmail"
-                className="w-full pl-10 p-2 bg-orange-900 border text-white rounded-md focus:ring-2 focus:ring-blue-400 outline-none"
-              />
-            </div>
-
-            <div className="relative mb-4 flex">
-              <FaLock className="absolute left-3 top-3 text-gray-400" />
-              <input
-                name="password"
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                className="w-full pl-10 p-2 border bg-orange-900 text-white rounded-md focus:ring-2 focus:ring-blue-400 outline-none"
-              />
-              <p
-                onClick={() => setShowPassword(!showPassword)}
-                className="mt-3 text-xl text-white relative -ml-8"
-              >
-                {showPassword ? (
-                  <FaRegEyeSlash></FaRegEyeSlash>
-                ) : (
-                  <RxEyeOpen></RxEyeOpen>
-                )}
-              </p>
-            </div>
-
-            <button className="w-full mt-4 bg-orange-950 text-white py-2 rounded-md hover:bg-blue-800 transition">
-              LOGIN
-            </button>
-
-            <SocialSignIn></SocialSignIn>
-          </form>
-        </div>
-        <p className="p-4 text-black bg-white px-2 rounded-b-xl rounded-l-xl ">
-          If not registered? First Sign Up please!{" "}
-          <Link href={"/signUp"}>
-            <span className="font-bold text-orange-400 border border-b-orange-400">
-              SignUp
+          <div className="flex items-center gap-2">
+            <div className="flex-grow border-t"></div>
+            <span className="text-sm text-gray-500">
+              ........................................or......................................
             </span>
-          </Link>
-        </p>
+            <div className="flex-grow border-t"></div>
+          </div>
+
+          <SocialSignIn />
+
+          <p className="text-center text-sm text-gray-700">
+            Don’t have an account?{" "}
+            <Link href="/signUp" className="text-red-600 font-semibold">
+              Sign Up
+            </Link>
+          </p>
+        </form>
       </div>
     </div>
   );

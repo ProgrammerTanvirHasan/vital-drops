@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="bg-[#3E5879] mt-4 rounded-b-xl">
+    <div className="backdrop-blur-md bg-cyan-800 shadow-lg border boder-t-2 rounded-b-xl">
       <footer className="footer footer-center rounded p-10 text-white h-auto w-full max-w-7xl mx-auto">
         <nav className="grid grid-flow-col gap-4 text-xl">
           <a className="link link-hover text-lg font-semibold hover:text-blue-300 transition duration-300">

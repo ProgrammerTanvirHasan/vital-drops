@@ -33,7 +33,7 @@ const Page = ({ params }) => {
   }, [param.id]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className="min-h-screen">Loading...</p>;
   }
 
   const handleCabin = async (e) => {
@@ -161,7 +161,7 @@ const Page = ({ params }) => {
 
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition"
+          className="block text-center bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full hover:from-cyan-600 hover:to-teal-600 transition p-2 w-full"
         >
           Place Order
         </button>

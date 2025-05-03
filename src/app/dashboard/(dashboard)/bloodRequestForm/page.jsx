@@ -3,163 +3,210 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const bloodRequestForm = () => {
-  const handleMenageBlood = async (e) => {
+const BloodRequestForm = () => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const patientName = form.patientName.value;
-    const patientAge = form.age.value;
-    const bloodGroup = form.bloodGroup.value;
-    const urgent = form.urgent.value;
-    const quantity = form.quantity.value;
-    const hospitalName = form.hospitalName.value;
-    const hospitalAddress = form.hospitalAddress.value;
-    const contactNumber = form.contactNumber.value;
-    const attendantName = form.attendantName.value;
-    const attendentContact = form.attendentContact.value;
-    const additionalInfo = form.additionalInfo.value;
-    const currentDate = new Date().toLocaleDateString();
 
-    const patientDetails = {
-      patientName,
-      patientAge,
-      bloodGroup,
-      urgent,
-      quantity,
-      hospitalName,
-      hospitalAddress,
-      contactNumber,
-      attendantName,
-      attendentContact,
-      additionalInfo,
-      currentDate,
+    const formData = {
+      patientName: form.patientName.value,
+      patientAge: form.age.value,
+      bloodGroup: form.bloodGroup.value,
+      urgent: form.urgent.value,
+      quantity: form.quantity.value,
+      hospitalName: form.hospitalName.value,
+      hospitalAddress: form.hospitalAddress.value,
+      contactNumber: form.contactNumber.value,
+      attendantName: form.attendantName.value,
+      attendentContact: form.attendentContact.value,
+      additionalInfo: form.additionalInfo.value,
+      currentDate: new Date().toLocaleDateString(),
     };
 
     try {
       const resp = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/bloodRequestForm/api`,
-        patientDetails,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        formData,
+        { headers: { "Content-Type": "application/json" } }
       );
 
-      if (resp.status == 200) {
+      if (resp.status === 200) {
         Swal.fire({
-          title: "added request",
+          title: "Request Submitted",
           text: resp?.data?.message,
           icon: "success",
-          draggable: true,
         });
-        form.reset("");
+        form.reset();
       }
     } catch (error) {
       Swal.fire({
-        title: "Error signing up",
-        text: error.response?.data?.message || "Something went wrong!",
+        title: "Submission Failed",
+        text: error.response?.data?.message || "Something went wrong.",
         icon: "error",
       });
     }
   };
-  return (
-    <div className="py-8">
-      <div className="p-4 max-w-lg mx-auto bg-slate-400  shadow-md rounded-lg ">
-        <h2 className="text-xl font-bold mb-4">Blood Request Form</h2>
-        <form onSubmit={handleMenageBlood} className="space-y-4">
-          <input
-            name="patientName"
-            type="text"
-            placeholder="Patient Name"
-            className="w-full p-2 border rounded"
-            required
-          />
-          <input
-            name="age"
-            type="number"
-            placeholder="Age"
-            className="w-full p-2 border rounded"
-            required
-          />
-          <select
-            name="bloodGroup"
-            className="w-full p-2 border rounded"
-            required
-          >
-            <option value="">Select Blood Group</option>
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
-            <option value="B+">B+</option>
-            <option value="B-">B-</option>
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
-            <option value="AB+">AB+</option>
-            <option value="AB-">AB-</option>
-          </select>
 
-          <div className="flex items-center space-x-4">
-            <label>Urgent?</label>
-            <input type="radio" name="urgent" value="yes" /> Yes
-            <input type="radio" name="urgent" value="no" /> No
+  return (
+    <section className=" min-h-screen py-10 px-4">
+      <div className="max-w-3xl mx-auto bg-white shadow-md rounded-xl ">
+        <h2 className="text-3xl font-bold text-center text-red-600 mb-8">
+          🩸 Blood Request Form
+        </h2>
+
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-6 shadow-2xl bg-gray-100 p-4"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium">Patient Name</label>
+              <input
+                type="text"
+                name="patientName"
+                required
+                className="input w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium">Age</label>
+              <input
+                type="number"
+                name="age"
+                required
+                className="input w-full"
+              />
+            </div>
           </div>
-          <input
-            name="quantity"
-            type="number"
-            placeholder="Number of Units Needed"
-            className="w-full p-2 border rounded"
-            required
-          />
-          <input
-            name="hospitalName"
-            type="text"
-            placeholder="Hospital Name"
-            className="w-full p-2 border rounded"
-            required
-          />
-          <input
-            name="hospitalAddress"
-            type="text"
-            placeholder="Hospital Address"
-            className="w-full p-2 border rounded"
-            required
-          />
-          <input
-            name="contactNumber"
-            type="tel"
-            placeholder="Contact Number"
-            className="w-full p-2 border rounded"
-            required
-          />
-          <input
-            name="attendantName"
-            type="text"
-            placeholder="Attendant Name"
-            className="w-full p-2 border rounded"
-            required
-          />
-          <input
-            name="attendentContact"
-            type="tel"
-            placeholder="Attendant Contact Number"
-            className="w-full p-2 border rounded"
-            required
-          />
-          <textarea
-            name="additionalInfo"
-            placeholder="Patient Condition (e.g., Thalassemia, Dengue, etc.)"
-            className="w-full p-2 border rounded"
-            required
-          ></textarea>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium">Blood Group</label>
+              <select name="bloodGroup" required className="select w-full">
+                <option value="">Select</option>
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>O+</option>
+                <option>O-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium">Units Needed</label>
+              <input
+                type="number"
+                name="quantity"
+                required
+                className="input w-full"
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center gap-6">
+            <span className="font-medium">Urgent?</span>
+            <label className="inline-flex items-center">
+              <input
+                type="radio"
+                name="urgent"
+                value="yes"
+                required
+                className="radio"
+              />
+              <span className="ml-2">Yes</span>
+            </label>
+            <label className="inline-flex items-center">
+              <input type="radio" name="urgent" value="no" className="radio" />
+              <span className="ml-2">No</span>
+            </label>
+          </div>
+
+          <hr className="my-6" />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium">Hospital Name</label>
+              <input
+                type="text"
+                name="hospitalName"
+                required
+                className="input w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium">
+                Hospital Address
+              </label>
+              <input
+                type="text"
+                name="hospitalAddress"
+                required
+                className="input w-full"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium">
+                Contact Number
+              </label>
+              <input
+                type="tel"
+                name="contactNumber"
+                required
+                className="input w-full"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium">
+                Attendant Name
+              </label>
+              <input
+                type="text"
+                name="attendantName"
+                required
+                className="input w-full"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium">
+              Attendant Contact
+            </label>
+            <input
+              type="tel"
+              name="attendentContact"
+              required
+              className="input w-full"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium">
+              Additional Information
+            </label>
+            <textarea
+              name="additionalInfo"
+              placeholder="e.g. Dengue, Accident, Surgery..."
+              required
+              className="textarea w-full"
+            />
+          </div>
+
           <button
             type="submit"
-            className="w-full bg-red-500 text-white p-2 rounded"
+            className="w-full bg-gradient-to-r from-teal-500 to-cyan-500 text-white py-2 rounded-full hover:from-cyan-600 hover:to-teal-600  font-semibold  rounded-full shadow-md hover:shadow-lg transition"
           >
-            Submit Request
+            📝 Submit Blood Request
           </button>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
-export default bloodRequestForm;
+
+export default BloodRequestForm;

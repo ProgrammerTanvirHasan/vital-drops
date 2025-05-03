@@ -74,49 +74,68 @@ const viewAllBloodBank = () => {
   return (
     <div className="max-w-6xl mx-auto p-8">
       {loading && (
-        <div className="text-center text-white font-semibold bg-green-700 py-2 rounded-lg mb-4">
-          Loading...
+        <div className="flex flex-col items-center justify-center py-10 min-h-screen">
+          <div className="relative w-24 h-24">
+            <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+              <div className="w-12 h-12 border-4 border-rose-200 border-t-rose-600 rounded-full animate-spin"></div>
+            </div>
+            <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+              <div className="w-6 h-6 bg-white rounded-full animate-pulse"></div>
+            </div>
+          </div>
+          <p className="mt-4 text-rose-800 font-medium">
+            Searching For Blood Bank...
+          </p>
         </div>
       )}
       <h1 className="text-4xl font-bold text-center text-red-600 mb-6">
         Blood Donation Camps
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {Bank.map((bank) => (
           <div
             key={bank._id}
-            className="bg-white shadow-lg rounded-lg border border-gray-200 p-6 hover:shadow-xl transition duration-300"
+            className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all border border-gray-200 p-4 flex items-start justify-between gap-4"
           >
-            <h2 className="text-2xl font-bold text-red-500">{bank.name}</h2>
-            <p className="text-gray-700 mt-2">
-              <strong>📞 Contact:</strong> {bank.contact}
-            </p>
-            <p className="text-gray-700">
-              <strong>📧 Email:</strong> {bank.email}
-            </p>
-            <p className="text-gray-700">
-              <strong>📍 Address:</strong> {bank.address}
-            </p>
-            <p className="text-gray-700">
-              <strong>📌 Full Address:</strong> {bank.FullAddress}
-            </p>
-            <p className="text-gray-700">
-              <strong>⏰ Hours:</strong> {bank.hours}
-            </p>
-            <div className="mt-4 p-3 bg-gray-100 rounded-lg border-l-4 border-red-500">
-              <p className="text-gray-700 italic">{bank.additional_info}</p>
+            <div className="flex-1">
+              <h2 className="text-xl font-bold text-red-600 mb-1">
+                🏥 {bank.name}
+              </h2>
+              <div className="text-gray-700 text-sm space-y-0.5">
+                <p>
+                  📞 <strong>Contact:</strong> {bank.contact}
+                </p>
+                <p>
+                  📧 <strong>Email:</strong> {bank.email}
+                </p>
+                <p>
+                  📍 <strong>Address:</strong> {bank.address}
+                </p>
+                <p>
+                  🗺️ <strong>Full Address:</strong> {bank.FullAddress}
+                </p>
+                <p>
+                  ⏰ <strong>Hours:</strong> {bank.hours}
+                </p>
+              </div>
+              {bank.additional_info && (
+                <div className="mt-2 text-gray-600 italic text-sm">
+                  {bank.additional_info}
+                </div>
+              )}
             </div>
-            <div className=" mt-4">
+
+            <div className="flex flex-col justify-start items-end gap-2 min-w-[120px]">
               <Link href={`/dashboard/viewAllBloodBank/${bank._id}`}>
-                <button className="btn bg-green-800 text-white hover:bg-black">
-                  update
+                <button className="w-full px-3 py-1.5 bg-green-700 text-white rounded hover:bg-green-900 text-sm">
+                  ✏️ Update
                 </button>
               </Link>
               <button
                 onClick={() => handleDelete(bank._id)}
-                className="btn bg-red-700 text-white hover:bg-black"
+                className="w-full px-3 py-1.5 bg-red-700 text-white rounded hover:bg-red-900 text-sm"
               >
-                delete
+                🗑️ Delete
               </button>
             </div>
           </div>

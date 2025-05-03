@@ -3,7 +3,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const bank = () => {
+const Bank = () => {
   const handleCreateBloodBank = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -21,204 +21,212 @@ const bank = () => {
     const formData = new FormData();
     formData.append("image", imageFile);
 
-    const response = await axios.post(
-      `https://api.imgbb.com/1/upload?key=a9b9160b05e3d4e68e60f154f621c349`,
-      formData
-    );
-
-    const ourCabin = response?.data?.data?.display_url;
-
-    const bankInfo = {
-      name,
-      contact,
-      email,
-      district,
-      blood_types,
-      hours,
-      additional_info,
-      FullAddress,
-      cabinRent,
-      ourCabin,
-    };
-
     try {
+      const imageResponse = await axios.post(
+        `https://api.imgbb.com/1/upload?key=a9b9160b05e3d4e68e60f154f621c349`,
+        formData
+      );
+
+      const ourCabin = imageResponse?.data?.data?.display_url;
+
+      const bankInfo = {
+        name,
+        contact,
+        email,
+        district,
+        blood_types,
+        hours,
+        additional_info,
+        FullAddress,
+        cabinRent,
+        ourCabin,
+      };
+
       const resp = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/bloodBanks/api`,
         bankInfo,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        { headers: { "Content-Type": "application/json" } }
       );
 
-      if (resp.status == 200) {
+      if (resp.status === 200) {
         Swal.fire({
-          title: "Added",
-          text: "Blood bank added to the website",
+          title: "Success!",
+          text: "Blood bank added successfully.",
           icon: "success",
-          draggable: true,
         });
-        form.reset("");
+        form.reset();
       }
     } catch (error) {
       Swal.fire({
-        title: "Error signing up",
+        title: "Error",
         text: error.response?.data?.message || "Something went wrong!",
         icon: "error",
       });
     }
   };
+
   return (
-    <div>
-      <h1 className="text-3xl text-red-600 text-center">Add Blood Bank</h1>
+    <div className="max-w-4xl mx-auto px-6 py-12">
+      <h1 className="text-3xl font-bold text-center text-red-600 mb-8">
+        🩸 Add a Blood Bank
+      </h1>
 
-      <div className=" px-4">
-        <form onSubmit={handleCreateBloodBank}>
-          <div className="lg:flex justify-between">
-            <div className="relative mb-4">
-              <label>
-                <p>Enter Blood Bank Name</p>
-              </label>
-              <input
-                name="name"
-                type="text"
-                placeholder="Blood Bank Name"
-                className="p-2 w-80 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
-              />
-            </div>
-
-            <div className="relative mb-4">
-              <label>
-                <p>Contact Number</p>
-              </label>
-              <input
-                name="contact"
-                type="text"
-                placeholder="Contact Number"
-                className="p-2 w-80 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
-              />
-            </div>
+      <form
+        onSubmit={handleCreateBloodBank}
+        className="bg-white/10 backdrop-blur-md p-6 rounded-xl border border-gray-300 shadow-lg space-y-8"
+      >
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div>
+            <label className="block mb-1 font-medium text-white">
+              Blood Bank Name
+            </label>
+            <input
+              name="name"
+              type="text"
+              required
+              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              placeholder="E.g. Red Cross Center"
+            />
           </div>
-
-          <div className="lg:flex justify-between">
-            <div className="relative mb-4">
-              <label>
-                <p>Email Address</p>
-              </label>
-              <input
-                name="email"
-                type="email"
-                placeholder="Email Address"
-                className="p-2 w-80 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
-              />
-            </div>
-
-            <div className="relative mb-4">
-              <label>
-                <p>Cabin rent</p>
-              </label>
-              <input
-                name="cabinRent"
-                type="number"
-                placeholder="Enter cabin rent"
-                className="p-2 w-80 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
-              />
-            </div>
+          <div>
+            <label className="block mb-1 font-medium text-white">
+              Contact Number
+            </label>
+            <input
+              name="contact"
+              type="text"
+              required
+              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              placeholder="+8801XXXXXXXXX"
+            />
           </div>
+        </div>
 
-          <div className="lg:flex justify-between">
-            <div className="relative mb-4">
-              <label>
-                <p>Complete Address</p>
-              </label>
-              <input
-                name="FullAddress"
-                type="text"
-                placeholder="Complete address"
-                className="p-2 w-80 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
-              />
-            </div>
-            <div className="relative mb-4">
-              <label>
-                <p>Our cabin room</p>
-              </label>
-              <input
-                name="image"
-                type="file"
-                className="p-2 w-80 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
-              />
-            </div>
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div>
+            <label className="block mb-1 font-medium text-white">
+              Email Address
+            </label>
+            <input
+              name="email"
+              type="email"
+              required
+              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              placeholder="example@mail.com"
+            />
           </div>
-
-          <div className="lg:flex justify-between">
-            <div className="relative mb-4">
-              <label>
-                <p>Available Blood Types</p>
-              </label>
-              <input
-                name="blood_types"
-                type="text"
-                placeholder="Available blood types (e.g., A+, B-, O+)"
-                className="p-2 w-80 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
-              />
-            </div>
-            <div className="relative mb-4">
-              <label>
-                <p>Added district</p>
-              </label>
-              <select
-                name="district"
-                className="p-2 w-80 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
-              >
-                <option value="">Select Any location</option>
-                <option value="jamalpur">jamalpur</option>
-                <option value="mymensingh">mymensingh</option>
-                <option value="sherpur">sherpur</option>
-                <option value="tangail">tangail</option>
-                <option value="bogura">bogura</option>
-                <option value="dhaka">dhaka</option>
-                <option value="munshiganj">munshiganj</option>
-                <option value="gajipur">gajipur</option>
-              </select>
-            </div>
+          <div>
+            <label className="block mb-1 font-medium text-white">
+              Cabin Rent
+            </label>
+            <input
+              name="cabinRent"
+              type="number"
+              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              placeholder="৳ 500"
+            />
           </div>
+        </div>
 
-          <div className="relative mb-4">
-            <label>
-              <p>Opening Hours</p>
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div>
+            <label className="block mb-1 font-medium text-white">
+              Full Address
+            </label>
+            <input
+              name="FullAddress"
+              type="text"
+              required
+              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              placeholder="123 Street, Area, District"
+            />
+          </div>
+          <div>
+            <label className="block mb-1 font-medium text-white">
+              Cabin Room Photo
+            </label>
+            <input
+              name="image"
+              type="file"
+              accept="image/*"
+              required
+              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+            />
+          </div>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div>
+            <label className="block mb-1 font-medium text-white">
+              Available Blood Types
+            </label>
+            <input
+              name="blood_types"
+              type="text"
+              required
+              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              placeholder="A+, B-, O+, etc."
+            />
+          </div>
+          <div>
+            <label className="block mb-1 font-medium text-white">
+              District
+            </label>
+            <select
+              name="district"
+              required
+              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+            >
+              <option value="">Select a location</option>
+              <option value="jamalpur">Jamalpur</option>
+              <option value="mymensingh">Mymensingh</option>
+              <option value="sherpur">Sherpur</option>
+              <option value="tangail">Tangail</option>
+              <option value="bogura">Bogura</option>
+              <option value="dhaka">Dhaka</option>
+              <option value="munshiganj">Munshiganj</option>
+              <option value="gajipur">Gajipur</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div>
+            <label className="block mb-1 font-medium text-white">
+              Opening Hours
             </label>
             <input
               name="hours"
               type="text"
-              placeholder="Enter opening hours"
-              className="p-2 w-80 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
+              required
+              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              placeholder="E.g. 9am - 5pm"
             />
           </div>
-
-          <div className="relative mb-4">
-            <label>
-              <p>Additional Information</p>
+          <div>
+            <label className="block mb-1 font-medium text-white">
+              Additional Info
             </label>
             <textarea
               name="additional_info"
-              placeholder="Enter any additional information"
-              className="p-2 w-80 h-32 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
+              rows={4}
+              className="w-full p-3 bg-slate-700 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              placeholder="Any other information..."
             />
           </div>
+        </div>
 
-          <div className="text-center">
-            <button
-              type="submit"
-              className="px-4 py-2 bg-cyan-800 text-white w-full rounded-md hover:bg-blue-600"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
+        <div className="pt-6">
+          <button
+            type="submit"
+            className=" w-full block text-center bg-gradient-to-r from-teal-500 to-cyan-500 text-white py-2 rounded-full hover:from-cyan-600 hover:to-teal-600 transition p-2"
+          >
+            ➕ Add Blood Bank
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
 
-export default bank;
+export default Bank;

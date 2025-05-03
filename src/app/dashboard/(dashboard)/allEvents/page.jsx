@@ -75,16 +75,26 @@ const AllEvents = () => {
   return (
     <div className="container mx-auto p-6">
       {loading && (
-        <div className="text-center text-white font-semibold bg-green-700 py-2 rounded-lg mb-4">
-          Loading...
+        <div className="flex flex-col items-center justify-center py-10 min-h-screen">
+          <div className="relative w-24 h-24">
+            <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+              <div className="w-12 h-12 border-4 border-rose-200 border-t-rose-600 rounded-full animate-spin"></div>
+            </div>
+            <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+              <div className="w-6 h-6 bg-white rounded-full animate-pulse"></div>
+            </div>
+          </div>
+          <p className="mt-4 text-rose-800 font-medium">
+            Searching For Events...
+          </p>
         </div>
       )}
 
-      <h1 className="text-3xl font-bold text-green-900 text-center mb-6">
+      <h1 className="text-3xl font-bold text-red-600 text-center mb-6">
         All Events Here
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
         {events.map((event) => (
           <div
             key={event._id}

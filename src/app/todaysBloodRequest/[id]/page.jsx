@@ -28,7 +28,18 @@ const Page = ({ params }) => {
   }, [id]);
 
   if (loading) {
-    return <p className="text-center mt-8">Loading...</p>;
+    return (
+      <div className="flex flex-col items-center justify-center py-10 min-h-screen">
+        <div className="relative w-24 h-24">
+          <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+            <div className="w-12 h-12 border-4 border-rose-200 border-t-rose-600 rounded-full animate-spin"></div>
+          </div>
+          <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+            <div className="w-6 h-6 bg-white rounded-full animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   if (!data) {
@@ -98,9 +109,11 @@ const Page = ({ params }) => {
             className="w-full border border-gray-300 rounded-md p-3 focus:ring-2 focus:ring-red-400"
             placeholder="Write your message..."
           ></textarea>
-          <button className="mt-4 px-6 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 transition">
-            Send
-          </button>
+          <div className="mt-4">
+            <button className="block text-center bg-gradient-to-r from-teal-500 to-cyan-500 text-white py-2 rounded-full hover:from-cyan-600 hover:to-teal-600 transition p-4">
+              Send
+            </button>
+          </div>
         </form>
       </div>
     </div>

@@ -10,8 +10,10 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import SocialSignIn from "@/components/shared/SocialSignIn";
 
-const signUp = () => {
+const SignUp = () => {
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleSignUp = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -24,32 +26,28 @@ const signUp = () => {
     const formData = new FormData();
     formData.append("image", imageFile);
 
-    const response = await axios.post(
-      `https://api.imgbb.com/1/upload?key=a9b9160b05e3d4e68e60f154f621c349`,
-      formData
-    );
-
-    const image = response?.data?.data?.display_url;
-
-    const user = { name, email, password, role, image };
-
     try {
+      const response = await axios.post(
+        `https://api.imgbb.com/1/upload?key=a9b9160b05e3d4e68e60f154f621c349`,
+        formData
+      );
+
+      const image = response?.data?.data?.display_url;
+      const user = { name, email, password, role, image };
+
       const resp = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/signUp/api`,
         user,
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
         }
       );
 
-      if (resp.status == 200) {
+      if (resp.status === 200) {
         Swal.fire({
           title: "Welcome",
           text: resp?.data?.message,
           icon: "success",
-          draggable: true,
         });
         router.push("/login");
       }
@@ -62,105 +60,93 @@ const signUp = () => {
     }
   };
 
-  const [showPassword, setShowPassword] = useState(false);
   return (
-    <div
-      style={{ backgroundImage: "url('/image/image.png')" }}
-      className="min-h-screen  flex items-center justify-center bg-cover"
-    >
-      <div className="bg-white shadow-lg rounded-lg min-w-[500px] p-6">
-        <div
-          style={{ backgroundImage: "url('/image/image.png')" }}
-          className="text-center  p-12 min-h-80"
-        >
-          <h2 className="text-2xl font-bold text-white">Welcome</h2>
-          <p className="text-2xl font-bold text-white">To SignUp Page</p>
-          <p className="text-gray-500 text-sm">SignUp to create a new user</p>
-          <button className="text-blue-600 font-semibold mt-2 hover:underline">
-            Create A New Account
+    <div className="flex justify-center  bg-base-300 items-center min-h-screen">
+      <div className="w-[75vh] h-[75vh] bg-white rounded-lg shadow-md flex flex-col justify-center px-10 py-6 overflow-auto">
+        <h2 className="text-2xl font-bold text-center text-red-800 mb-4">
+          Create Account
+        </h2>
+        <form onSubmit={handleSignUp} className="space-y-4">
+          <div className="relative">
+            <FaUser className="absolute left-3 top-3 text-gray-400" />
+            <input
+              name="name"
+              type="text"
+              placeholder="Username"
+              required
+              className="w-full pl-10 p-2 border-b-2 border-gray-300 bg-transparent text-gray-700 focus:outline-none focus:border-red-500"
+            />
+          </div>
+
+          <div>
+            <input
+              name="image"
+              type="file"
+              required
+              className="w-full p-2 border-b-2 border-gray-300 bg-transparent text-gray-700 focus:outline-none focus:border-red-500"
+            />
+          </div>
+
+          <div>
+            <select
+              defaultValue="User"
+              name="role"
+              className="w-full p-2 border-b-2 border-gray-300 bg-transparent text-gray-700 focus:outline-none focus:border-red-500"
+            >
+              <option disabled>User</option>
+              <option>Admin</option>
+              <option>User</option>
+            </select>
+          </div>
+
+          <div className="relative">
+            <MdEmail className="absolute left-3 top-3 text-gray-400" />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+              className="w-full pl-10 p-2 border-b-2 border-gray-300 bg-transparent text-gray-700 focus:outline-none focus:border-red-500"
+            />
+          </div>
+
+          <div className="relative">
+            <FaLock className="absolute left-3 top-3 text-gray-400" />
+            <input
+              name="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              required
+              className="w-full pl-10 pr-10 p-2 border-b-2 border-gray-300 bg-transparent text-gray-700 focus:outline-none focus:border-red-500"
+            />
+            <div
+              className="absolute right-3 top-3 text-gray-500 cursor-pointer"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaRegEyeSlash /> : <RxEyeOpen />}
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full mt-2 bg-red-600 hover:bg-red-700 text-white py-2 rounded-full transition"
+          >
+            SIGN UP
           </button>
-        </div>
 
-        <div className="mt-6">
-          <h3 className="text-center text-gray-700 font-semibold mb-2">
-            USER SIGN UP
-          </h3>
+          <div className="flex items-center gap-2">
+            <div className="flex-grow border-t"></div>
+            <span className="text-sm text-gray-500">or</span>
+            <div className="flex-grow border-t"></div>
+          </div>
 
-          <form onSubmit={handleSignUp}>
-            <div className="relative mb-4">
-              <FaUser className="absolute left-3 top-3 text-gray-400" />
-              <input
-                name="name"
-                type="text"
-                placeholder="UserName"
-                className="w-full pl-10 p-2  bg-orange-900 border focus:ring-2 focus:ring-blue-400 text-white rounded-md  outline-none"
-              />
-            </div>
+          <SocialSignIn />
+        </form>
 
-            <div className="relative mb-4">
-              <input
-                name="image"
-                type="file"
-                className=" w-full p-2  bg-orange-900  focus:ring-2 focus:ring-blue-400 text-white rounded-md  outline-none"
-              />
-            </div>
-
-            <div className="relative mb-4">
-              <select
-                defaultValue="User"
-                name="role"
-                className=" mb-4 w-full p-2  bg-orange-900 border focus:ring-2 focus:ring-blue-400 text-white rounded-md  outline-none"
-              >
-                <option disabled={true}>User</option>
-                <option>Admin</option>
-                <option>User</option>
-              </select>
-            </div>
-
-            <div className="relative mb-4">
-              <MdEmail className="absolute left-3 top-3 text-gray-400"></MdEmail>
-              <input
-                type="email"
-                name="email"
-                placeholder="UserEmail"
-                className="w-full pl-10 p-2 bg-orange-900 border text-white rounded-md focus:ring-2 focus:ring-blue-400 outline-none"
-              />
-            </div>
-
-            <div className="relative mb-4 flex">
-              <FaLock className="absolute left-3 top-3 text-gray-400" />
-              <input
-                name="password"
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                className="w-full pl-10 p-2 border bg-orange-900 text-white rounded-md focus:ring-2 focus:ring-blue-400 outline-none"
-              />
-              <p
-                onClick={() => setShowPassword(!showPassword)}
-                className="mt-3 text-xl text-white relative -ml-8"
-              >
-                {showPassword ? (
-                  <FaRegEyeSlash></FaRegEyeSlash>
-                ) : (
-                  <RxEyeOpen></RxEyeOpen>
-                )}
-              </p>
-            </div>
-
-            <button className="w-full mt-4 bg-orange-950 text-white py-2 rounded-md hover:bg-blue-800 transition">
-              SIGN UP
-            </button>
-
-            <SocialSignIn></SocialSignIn>
-          </form>
-        </div>
-
-        <p className="p-4 text-black bg-white px-2 rounded-b-xl rounded-l-xl ">
-          If sign Up completed ? please sign in!{" "}
-          <Link href={"/login"}>
-            <span className="font-bold text-orange-400 border border-b-orange-400">
-              Sign In
-            </span>
+        <p className="text-center text-sm mt-4 text-gray-700">
+          Already have an account?{" "}
+          <Link href="/login" className="text-red-600 font-semibold">
+            Sign In
           </Link>
         </p>
       </div>
@@ -168,4 +154,4 @@ const signUp = () => {
   );
 };
 
-export default signUp;
+export default SignUp;

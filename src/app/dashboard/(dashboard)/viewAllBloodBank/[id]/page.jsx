@@ -1,19 +1,22 @@
 "use client";
 
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-const page = ({ params }) => {
+const page = () => {
+  const param = useParams();
   const [data, setData] = useState([]);
   const router = useRouter();
+  const { id } = param;
+
   useEffect(() => {
     const bloodBank = async () => {
       try {
         const resp = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/api/${params.id}`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/api/${id}`
         );
         if (!resp.ok) {
           throw new Error("Failed to fetch blood bank data");
@@ -25,7 +28,7 @@ const page = ({ params }) => {
       }
     };
     bloodBank();
-  }, [params.id]);
+  }, [id]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -118,7 +121,7 @@ const page = ({ params }) => {
                 defaultValue={data.name}
                 type="text"
                 placeholder="Blood Bank Name"
-                className="p-2 w-80 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
+                className="p-2 w-80 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
               />
             </div>
 
@@ -131,7 +134,7 @@ const page = ({ params }) => {
                 defaultValue={data.contact}
                 type="text"
                 placeholder="Contact Number"
-                className="p-2 w-80 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
+                className="p-2 w-80 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
               />
             </div>
           </div>
@@ -146,7 +149,7 @@ const page = ({ params }) => {
                 defaultValue={data.email}
                 type="email"
                 placeholder="Email Address"
-                className="p-2 w-80 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
+                className="p-2 w-80 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
               />
             </div>
 
@@ -159,7 +162,7 @@ const page = ({ params }) => {
                 defaultValue={data.cabinRent}
                 type="number"
                 placeholder="Enter cabin rent"
-                className="p-2 w-80 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
+                className="p-2 w-80 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
               />
             </div>
           </div>
@@ -174,7 +177,7 @@ const page = ({ params }) => {
                 defaultValue={data.FullAddress}
                 type="text"
                 placeholder="Complete address"
-                className="p-2 w-80 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
+                className="p-2 w-80 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
               />
             </div>
             <div className="relative mb-4">
@@ -184,7 +187,7 @@ const page = ({ params }) => {
               <input
                 name="image"
                 type="file"
-                className="p-2 w-80 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
+                className="p-2 w-80 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
               />
             </div>
           </div>
@@ -199,7 +202,7 @@ const page = ({ params }) => {
                 defaultValue={data.blood_types}
                 type="text"
                 placeholder="Available blood types (e.g., A+, B-, O+)"
-                className="p-2 w-80 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
+                className="p-2 w-80 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
               />
             </div>
           </div>
@@ -213,7 +216,7 @@ const page = ({ params }) => {
               defaultValue={data.hours}
               type="text"
               placeholder="Enter opening hours"
-              className="p-2 w-80 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
+              className="p-2 w-80 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
             />
           </div>
 
@@ -225,14 +228,14 @@ const page = ({ params }) => {
               name="additional_info"
               defaultValue={data.additional_info}
               placeholder="Enter any additional information"
-              className="p-2 w-80 h-32 border focus:ring-2 bg-slate-950 glass ring-blue-400 text-white rounded-md outline-none"
+              className="p-2 w-80 h-32 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
             />
           </div>
 
-          <div className="text-center">
+          <div className="text-center pb-4">
             <button
               type="submit"
-              className="px-4 py-2 bg-cyan-800 text-white w-full rounded-md hover:bg-blue-600"
+              className="px-4 py-2 bg-cyan-800 text-white w-full rounded-md hover:bg-blue-600 "
             >
               Update
             </button>

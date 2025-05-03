@@ -9,8 +9,8 @@ export const metadata = {
 const Page = () => {
   return (
     <div>
-      <h1 className="text-4xl text-center text-red-500">
-        Find a donor in your area
+      <h1 className="text-4xl font-bold text-rose-800 mb-3 text-center pt-4">
+        Find Your Blood Donor
       </h1>
       <FindDonor></FindDonor>
     </div>

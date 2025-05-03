@@ -11,10 +11,9 @@ const page = () => {
     <div>
       <div className=" flex  justify-center bg-gray-100">
         <div className="p-6 bg-white shadow-lg rounded-xl text-center">
-          <h1 className="text-5xl font-bold text-red-600">Blood Banks</h1>
-          <p className="text-gray-700 mt-2 underline">
-            Find nearby blood banks to donate or receive blood.
-          </p>
+          <h1 className="text-4xl font-bold text-rose-800 mb-3">
+            Find Your Nearest Blood Bank
+          </h1>
         </div>
       </div>
       <BloodBank></BloodBank>

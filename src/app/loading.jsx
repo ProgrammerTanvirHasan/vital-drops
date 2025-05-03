@@ -1,10 +1,11 @@
 const loading = () => {
   return (
-    <div className="pt-24">
-      <span className="loading loading-spinner loading-xs"></span>
-      <span className="loading loading-spinner loading-sm"></span>
-      <span className="loading loading-spinner loading-md"></span>
-      <span className="loading loading-spinner loading-lg"></span>
+    <div className="flex justify-center items-center min-h-screen">
+      <span className="loading loading-bars loading-xs"></span>
+      <span className="loading loading-bars loading-sm"></span>
+      <span className="loading loading-bars loading-md"></span>
+      <span className="loading loading-bars loading-lg"></span>
+      <span className="loading loading-bars loading-xl"></span>
     </div>
   );
 };

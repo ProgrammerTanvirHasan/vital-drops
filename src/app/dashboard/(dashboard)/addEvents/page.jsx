@@ -32,63 +32,84 @@ const page = () => {
         }
       );
 
-      if (resp.status == 200) {
+      if (resp.status === 200) {
         Swal.fire({
-          title: "Added",
+          title: "Event Added Successfully",
           text: resp?.data?.message,
           icon: "success",
+          confirmButtonText: "Great!",
+          showConfirmButton: true,
           draggable: true,
         });
-        form.reset("");
+        form.reset();
       }
     } catch (error) {
       Swal.fire({
-        title: "Error signing up",
-        text: error.response?.data?.message || "Something went wrong!",
+        title: "Error Occurred",
+        text:
+          error.response?.data?.message ||
+          "Something went wrong! Please try again.",
         icon: "error",
+        confirmButtonText: "Okay",
+        showConfirmButton: true,
       });
     }
   };
+
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
-      <div className="w-full max-w-md p-6 shadow-lg rounded-2xl bg-gray-500">
-        <h2 className="text-2xl font-semibold text-center mb-4">Add Event</h2>
-        <form onSubmit={handleEvent} className="space-y-4">
-          <input
-            type="text"
-            name="title"
-            placeholder="Event Title"
-            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            required
-          />
-          <input
-            type="date"
-            name="date"
-            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            required
-          />
-          <input
-            type="text"
-            name="location"
-            placeholder="Event Location"
-            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            required
-          />
-          <textarea
-            name="description"
-            placeholder="Event Description"
-            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            required
-          />
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition"
-          >
-            Submit Event
-          </button>
+    <div className="flex justify-center  min-h-screen  p-6">
+      <div className="w-full   p-8 shadow-lg rounded-2xl bg-glass backdrop-blur-md border-2 border-gray-200">
+        <h2 className="text-3xl font-semibold text-center text-red-800 mb-6">
+          Add New Event
+        </h2>
+        <form onSubmit={handleEvent} className="space-y-5">
+          <div className="form-group">
+            <input
+              type="text"
+              name="title"
+              placeholder="Event Title"
+              className="w-full p-3 border border-gray-300 bg-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 transition-all"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="date"
+              name="date"
+              className="w-full p-3 border border-gray-300 bg-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 transition-all"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              name="location"
+              placeholder="Event Location"
+              className="w-full p-3 border border-gray-300 bg-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 transition-all"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <textarea
+              name="description"
+              placeholder="Event Description"
+              className="w-full p-3 border border-gray-300 bg-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 transition-all"
+              rows="4"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <button
+              type="submit"
+              className="w-full block text-center bg-gradient-to-r from-teal-500 to-cyan-500 text-white py-2 rounded-full hover:from-cyan-600 hover:to-teal-600 transition p-2"
+            >
+              Submit Event
+            </button>
+          </div>
         </form>
       </div>
     </div>
   );
 };
+
 export default page;

@@ -26,47 +26,78 @@ const AllSession = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-xl font-semibold">Data Loading...</p>
+      <div className="flex flex-col items-center justify-center py-10 min-h-screen">
+        <div className="relative w-24 h-24">
+          <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+            <div className="w-12 h-12 border-4 border-rose-200 border-t-rose-600 rounded-full animate-spin"></div>
+          </div>
+          <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+            <div className="w-6 h-6 bg-white rounded-full animate-pulse"></div>
+          </div>
+        </div>
+        <p className="mt-4 text-rose-800 font-medium">
+          Searching for blood bank...
+        </p>
       </div>
     );
   }
 
   return (
     <div className="max-w-7xl mx-auto ">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1  gap-6">
         {banks.map((bank) => (
-          <div key={bank._id} className="border p-5  shadow-2xl bg-slate-300  ">
-            <h3 className="text-xl font-semibold text-gray-800">{bank.name}</h3>
-            <p className="text-gray-600">
-              <strong>Contact:</strong> {bank.contact}
-            </p>
-            <p className="text-gray-600">
-              <strong>Email:</strong> {bank.email}
-            </p>
-            <p className="text-gray-600">
-              <strong>District:</strong> {bank.district}
-            </p>
-            <p className="text-gray-600">
-              <strong>Blood Types:</strong> {bank.blood_types}
-            </p>
-            <p className="text-gray-600">
-              <strong>Working Hours:</strong> {bank.hours}
-            </p>
-            <p className="text-gray-600">
-              <strong>Address:</strong> {bank.FullAddress}
-            </p>
-            <p className="text-gray-600">
-              <strong>Info:</strong> {bank.additional_info}
-            </p>
-            <p className="text-red-500 font-bold">
-              <strong>Cabin Rent:</strong> ${bank.cabinRent}
-            </p>
-            <img
-              src={bank.ourCabin}
-              alt="Cabin"
-              className="w-full h-40 object-cover mt-3 rounded-lg"
-            />
+          <div
+            key={bank._id}
+            className="bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center gap-6"
+          >
+            <div className="flex-shrink-0">
+              <img
+                src={bank.ourCabin}
+                alt="Donor"
+                className="w-96  h-64 object-cover  border-4 border-pink-200"
+              />
+            </div>
+            <div className="flex-1 space-y-2">
+              <div className="flex justify-between items-center">
+                <h2 className="text-2xl font-bold text-gray-800">
+                  {bank.name}
+                </h2>
+                <div className="bg-red-600 text-white font-bold px-3 py-1 rounded-full">
+                  Contact Here
+                </div>
+              </div>
+              <p className="text-sm text-gray-600">{bank.email}</p>
+              <div className="grid grid-cols-2 gap-4 text-sm text-gray-700">
+                <p>
+                  <span className="font-semibold text-red-600">Contact:</span>{" "}
+                  {bank.contact}
+                </p>
+                <p>
+                  <span className="font-semibold text-red-600">District:</span>{" "}
+                  {bank.district}
+                </p>
+                <p>
+                  <span className="font-semibold text-red-600">
+                    Working Hours:
+                  </span>{" "}
+                  {bank.hours}
+                </p>
+                <p>
+                  <span className="font-semibold text-red-600">
+                    Cabin Rent:
+                  </span>{" "}
+                  ${bank.cabinRent}
+                </p>
+              </div>
+              <p className="text-sm">
+                <span className="font-semibold text-red-600">Address:</span>{" "}
+                {bank.FullAddress}
+              </p>
+              <p className="text-sm text-gray-700">
+                <span className="font-semibold text-red-600">Info:</span>{" "}
+                {bank.additional_info}
+              </p>
+            </div>
           </div>
         ))}
       </div>

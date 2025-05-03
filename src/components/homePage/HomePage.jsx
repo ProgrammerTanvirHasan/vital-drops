@@ -7,7 +7,7 @@ import WhyDonotsBlood from "../whyDonotsBlood/WhyDonotsBlood";
 
 const HomePage = () => {
   return (
-    <div className="space-y-16">
+    <div >
       <Banner></Banner>
       <WhyDonotsBlood></WhyDonotsBlood>
       <WhoCanDonot></WhoCanDonot>
