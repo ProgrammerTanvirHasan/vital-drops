@@ -21,21 +21,21 @@ const SocialSignIn = () => {
         type="button"
         className="w-64 px-6 py-3 text-white bg-red-500 hover:bg-red-600 rounded-xl shadow-lg transition duration-200"
       >
-        Continue with Google
+        Google
       </button>
       <button
         onClick={() => handleSocialSign("facebook")}
         type="button"
         className="w-64 px-6 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-lg transition duration-200"
       >
-        Continue with Facebook
+        Facebook
       </button>
       <button
         onClick={() => handleSocialSign("github")}
         type="button"
         className="w-64 px-6 py-3 text-white bg-gray-800 hover:bg-gray-900 rounded-xl shadow-lg transition duration-200"
       >
-        Continue with GitHub
+        GitHub
       </button>
     </div>
   );

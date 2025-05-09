@@ -106,10 +106,10 @@ const Navbar = () => {
 
 const links = [
   { title: "Home", path: "/" },
-  { title: "Find a Donor", path: "/donor" },
+  { title: "Donor", path: "/donor" },
   { title: "Blood Banks", path: "/bloodBanks" },
-  { title: "Today's Patient", path: "/todaysBloodRequest" },
-  { title: "All Post", path: "/allPost" },
+  { title: "Recipient ", path: "/todaysBloodRequest" },
+  { title: "Post", path: "/allPost" },
   { title: "Dashboard", path: "/dashboard" },
 ];
 

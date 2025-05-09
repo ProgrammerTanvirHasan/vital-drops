@@ -38,7 +38,6 @@ const ReChart = () => {
     fetchDonor();
   }, []);
 
- 
   const bloodGroupCounts = donors.reduce((acc, donor) => {
     const group = donor.blood;
     if (group) {
@@ -47,14 +46,13 @@ const ReChart = () => {
     return acc;
   }, {});
 
-
   const chartData = Object.entries(bloodGroupCounts).map(([group, count]) => ({
     bloodGroup: group,
     count,
   }));
 
   return (
-    <div className="p-6 bg-white shadow-md rounded-xl max-w-4xl mx-auto mt-8">
+    <div className="p-6 bg-white shadow-md rounded-xl  mx-auto mt-8">
       {loading && <p className="text-center text-gray-600">Loading...</p>}
       {error && <p className="text-center text-red-500">{error}</p>}
 

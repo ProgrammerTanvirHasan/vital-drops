@@ -26,10 +26,10 @@ export default function UnauthorizedPage() {
         </p>
         <motion.div whileHover={{ scale: 1.05 }}>
           <Link
-            href="/"
+            href="/dashboard"
             className="inline-block px-6 py-2 bg-red-500 text-white font-medium rounded-xl hover:bg-red-600 transition-shadow shadow-md hover:shadow-xl"
           >
-            Back to Home
+            OK
           </Link>
         </motion.div>
       </motion.div>

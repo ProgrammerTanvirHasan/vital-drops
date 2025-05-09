@@ -1,7 +1,7 @@
 const WhoCanDonot = () => {
   return (
     <div>
-      <div className="p-8 max-w-4xl mx-auto bg-white">
+      <div className="p-8 mx-auto bg-white">
         <h1 className="text-3xl font-bold text-center text-blue-400">
           Who Can Donate Blood?
         </h1>
