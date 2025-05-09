@@ -34,7 +34,10 @@ const WhyDonotsBlood = () => {
       </div>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6  text-center">
         {reasons.map((reason) => (
-          <div key={reason.id} className="shadow-xl p-6 bg-slate-100 ">
+          <div
+            key={reason.id}
+            className="shadow-xl hover:scale-105 transition p-6 bg-slate-100 "
+          >
             <div className="flex flex-col items-center">
               <div className="text-red-600 text-4xl mb-2">{reason.icon}</div>
               <h2 className="text-2xl font-bold text-black">{reason.title}</h2>

@@ -1,11 +1,12 @@
 "use client";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [visibleEvents, setVisibleEvents] = useState([]);
   const [showAll, setShowAll] = useState(false);
-  const [loading, setLoading] = useState(true); // New loading state
+  const [loading, setLoading] = useState(true);
 
   const parseDate = (dateStr) => {
     const parsedDate = new Date(Date.parse(dateStr));
@@ -27,7 +28,7 @@ const Events = () => {
       } catch (error) {
         console.error("Error fetching events:", error);
       } finally {
-        setLoading(false); // Hide loading once done
+        setLoading(false);
       }
     };
 
@@ -63,18 +64,20 @@ const Events = () => {
             {visibleEvents.map((event) => (
               <div
                 key={event._id}
-                className="flex flex-col border p-4 rounded-lg shadow-lg h-full"
+                className="flex flex-col border  hover:bg-[#387B94] hover:text-orange-200 p-4 rounded-lg shadow-lg h-full"
               >
                 <div className="flex-grow">
                   <h2 className="text-xl font-semibold">{event.title}</h2>
-                  <p className="text-gray-600 italic mt-1">
+                  <p className="text-gray-600  italic mt-1">
                     {event.date} - {event.location}
                   </p>
                   <p className="mt-2">{event.description}</p>
                 </div>
-                <button className="mt-4 bg-red-500 text-white px-4 py-2 rounded self-start">
-                  Register
-                </button>
+                <Link href={"/signUp"}>
+                  <button className="mt-4 bg-red-500 text-white px-4 py-2 rounded self-start">
+                    Register
+                  </button>
+                </Link>
               </div>
             ))}
           </div>

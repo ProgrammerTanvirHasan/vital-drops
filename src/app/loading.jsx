@@ -1,11 +1,8 @@
 const loading = () => {
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <span className="loading loading-bars loading-xs"></span>
-      <span className="loading loading-bars loading-sm"></span>
-      <span className="loading loading-bars loading-md"></span>
-      <span className="loading loading-bars loading-lg"></span>
-      <span className="loading loading-bars loading-xl"></span>
+    <div className="min-h-[40vh] flex flex-col items-center justify-center text-orange-500 space-y-4">
+      <div className="w-12 h-12 border-4 border-orange-300 border-t-orange-600 rounded-full animate-spin"></div>
+      <p className="text-lg font-medium animate-pulse">Please wait...</p>
     </div>
   );
 };

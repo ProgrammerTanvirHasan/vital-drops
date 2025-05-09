@@ -50,7 +50,7 @@ const Banner = () => {
       </div>
       <div className="flex items-center py-2">
         <p className="text-3xl p-4 font-bold text-red-700 ">Lifeline Updates</p>
-        <div className="bg-gradient-to-br from-[#8B0000] to-[#C41E3A] text-white py-2 mt-6 flex-1">
+        <div className="bg-gradient-to-br from-[#8B0000]/80 to-[#C41E3A]/90 text-white py-2 mt-6 flex-1">
           <Marquee
             speed={80}
             gradient={false}
