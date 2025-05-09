@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 
 const yourPost = () => {
   const session = useSession();
-  console.log({ session }, "for facebook");
 
   const handlePost = async (e) => {
     e.preventDefault();

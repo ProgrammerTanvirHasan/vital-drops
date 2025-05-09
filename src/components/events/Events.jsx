@@ -73,11 +73,6 @@ const Events = () => {
                   </p>
                   <p className="mt-2">{event.description}</p>
                 </div>
-                <Link href={"/signUp"}>
-                  <button className="mt-4 bg-red-500 text-white px-4 py-2 rounded self-start">
-                    Register
-                  </button>
-                </Link>
               </div>
             ))}
           </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+
 import { useEffect, useState } from "react";
 
 const FindDonor = () => {
@@ -279,11 +280,7 @@ const FindDonor = () => {
                       <p>Posted on: {donor.currentDate}</p>
                     </div>
 
-                    <div className="mt-4">
-                      <button className="bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 px-6 rounded-lg transition-colors shadow-md hover:shadow-lg">
-                        Contact Donor
-                      </button>
-                    </div>
+                    <div className="mt-4"></div>
                   </div>
                 </div>
               </div>
