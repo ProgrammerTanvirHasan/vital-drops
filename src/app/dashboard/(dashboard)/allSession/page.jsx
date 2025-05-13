@@ -63,7 +63,7 @@ const AllSession = () => {
                   {bank.name}
                 </h2>
                 <div className="bg-red-600 text-white font-bold px-3 py-1 rounded-full">
-                  Contact Here
+                  Contact Anytime
                 </div>
               </div>
               <p className="text-sm text-gray-600">{bank.email}</p>

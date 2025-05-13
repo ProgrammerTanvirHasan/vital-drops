@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+
 import { useState, useEffect } from "react";
 
 const Events = () => {
@@ -7,9 +7,14 @@ const Events = () => {
   const [visibleEvents, setVisibleEvents] = useState([]);
   const [showAll, setShowAll] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const parseDate = (dateStr) => {
     const parsedDate = new Date(Date.parse(dateStr));
+    // Handle case where the date is invalid (e.g., NaN)
+    if (isNaN(parsedDate)) {
+      return null; // Or handle in some way, like defaulting to the current date
+    }
     return parsedDate;
   };
 
@@ -19,14 +24,23 @@ const Events = () => {
         const resp = await fetch(
           `${process.env.NEXT_PUBLIC_BASE_URL}/allEvent/api`
         );
+
+        if (!resp.ok) {
+          throw new Error("Failed to fetch events.");
+        }
+
         const data = await resp.json();
-        const sortedData = [...data].sort(
-          (a, b) => parseDate(b.date) - parseDate(a.date)
-        );
+        const sortedData = [...data]
+          .filter((event) => parseDate(event.date) !== null) // filter out invalid dates
+          .sort((a, b) => parseDate(b.date) - parseDate(a.date));
+
         setEvents(sortedData);
         setVisibleEvents(sortedData.slice(0, 6));
       } catch (error) {
         console.error("Error fetching events:", error);
+        setError(
+          "There was an error fetching the events. Please try again later."
+        );
       } finally {
         setLoading(false);
       }
@@ -58,17 +72,21 @@ const Events = () => {
           />
           <p className="mt-2 text-gray-500">Loading events...</p>
         </div>
+      ) : error ? (
+        <div className="text-center py-10 text-red-500">
+          <p>{error}</p>
+        </div>
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {visibleEvents.map((event) => (
+            {visibleEvents.map((event, index) => (
               <div
-                key={event._id}
-                className="flex flex-col border  hover:bg-[#387B94] hover:text-orange-200 p-4 rounded-lg shadow-lg h-full"
+                key={event._id || index} // Ensure unique key, use index if _id is missing
+                className="flex flex-col border hover:bg-[#387B94] hover:text-orange-200 p-4 rounded-lg shadow-lg h-full"
               >
                 <div className="flex-grow">
                   <h2 className="text-xl font-semibold">{event.title}</h2>
-                  <p className="text-gray-600  italic mt-1">
+                  <p className="text-gray-600 italic mt-1">
                     {event.date} - {event.location}
                   </p>
                   <p className="mt-2">{event.description}</p>

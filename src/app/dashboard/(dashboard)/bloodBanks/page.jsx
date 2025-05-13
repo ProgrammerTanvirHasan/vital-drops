@@ -77,26 +77,22 @@ const Bank = () => {
       >
         <div className="grid gap-6 sm:grid-cols-2">
           <div>
-            <label className="block mb-1 font-medium text-white">
-              Blood Bank Name
-            </label>
+            <label className="block mb-1 font-medium ">Blood Bank Name</label>
             <input
               name="name"
               type="text"
               required
-              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3   rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
               placeholder="E.g. Red Cross Center"
             />
           </div>
           <div>
-            <label className="block mb-1 font-medium text-white">
-              Contact Number
-            </label>
+            <label className="block mb-1 font-medium ">Contact Number</label>
             <input
               name="contact"
               type="text"
               required
-              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3  rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
               placeholder="+8801XXXXXXXXX"
             />
           </div>
@@ -104,25 +100,21 @@ const Bank = () => {
 
         <div className="grid gap-6 sm:grid-cols-2">
           <div>
-            <label className="block mb-1 font-medium text-white">
-              Email Address
-            </label>
+            <label className="block mb-1 font-medium ">Email Address</label>
             <input
               name="email"
               type="email"
               required
-              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3  rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
               placeholder="example@mail.com"
             />
           </div>
           <div>
-            <label className="block mb-1 font-medium text-white">
-              Cabin Rent
-            </label>
+            <label className="block mb-1 font-medium ">Cabin Rent</label>
             <input
               name="cabinRent"
               type="number"
-              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3  rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
               placeholder="৳ 500"
             />
           </div>
@@ -130,52 +122,46 @@ const Bank = () => {
 
         <div className="grid gap-6 sm:grid-cols-2">
           <div>
-            <label className="block mb-1 font-medium text-white">
-              Full Address
-            </label>
+            <label className="block mb-1 font-medium ">Full Address</label>
             <input
               name="FullAddress"
               type="text"
               required
-              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3  rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
               placeholder="123 Street, Area, District"
             />
           </div>
           <div>
-            <label className="block mb-1 font-medium text-white">
-              Cabin Room Photo
-            </label>
+            <label className="block mb-1 font-medium ">Cabin Room Photo</label>
             <input
               name="image"
               type="file"
               accept="image/*"
               required
-              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3  rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
             />
           </div>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2">
           <div>
-            <label className="block mb-1 font-medium text-white">
+            <label className="block mb-1 font-medium ">
               Available Blood Types
             </label>
             <input
               name="blood_types"
               type="text"
               required
-              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3  rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
               placeholder="A+, B-, O+, etc."
             />
           </div>
           <div>
-            <label className="block mb-1 font-medium text-white">
-              District
-            </label>
+            <label className="block mb-1 font-medium ">District</label>
             <select
               name="district"
               required
-              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3  rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
             >
               <option value="">Select a location</option>
               <option value="jamalpur">Jamalpur</option>
@@ -192,25 +178,21 @@ const Bank = () => {
 
         <div className="grid gap-6 sm:grid-cols-2">
           <div>
-            <label className="block mb-1 font-medium text-white">
-              Opening Hours
-            </label>
+            <label className="block mb-1 font-medium ">Opening Hours</label>
             <input
               name="hours"
               type="text"
               required
-              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3  rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
               placeholder="E.g. 9am - 5pm"
             />
           </div>
           <div>
-            <label className="block mb-1 font-medium text-white">
-              Additional Info
-            </label>
+            <label className="block mb-1 font-medium ">Additional Info</label>
             <textarea
               name="additional_info"
               rows={4}
-              className="w-full p-3 bg-base-300 text-white rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full p-3  rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
               placeholder="Any other information..."
             />
           </div>

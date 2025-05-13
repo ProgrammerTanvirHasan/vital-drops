@@ -2,11 +2,10 @@
 
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import { redirect } from "next/dist/server/api-utils";
 import { use, useEffect, useState } from "react";
 
 const Page = ({ params }) => {
-  const param = use(params);
+  const { id } = use(params);
   const [rent, setRent] = useState({});
   const [loading, setLoading] = useState(true);
   const session = useSession();
@@ -16,7 +15,7 @@ const Page = ({ params }) => {
     const cabinRent = async () => {
       try {
         const resp = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/api/${param.id}`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/api/${id}`
         );
         const data = await resp.json();
         setRent(data);
@@ -27,13 +26,13 @@ const Page = ({ params }) => {
       }
     };
 
-    if (param.id) {
+    if (id) {
       cabinRent();
     }
-  }, [param.id]);
+  }, [id]);
 
   if (loading) {
-    return <p className="min-h-screen">Loading...</p>;
+    return <p className="min-h-screen">Please wait...</p>;
   }
 
   const handleCabin = async (e) => {
@@ -44,7 +43,7 @@ const Page = ({ params }) => {
     const userNumber = form.userNumber.value;
     const userAddress = form.userAddress.value;
     const paymentMethod = form.paymentMethod.value;
-    const ammount = parseInt(form.ammount.value) || 0;
+    const amount = parseInt(form.ammount.value) || 0;
     const userCity = form.userCity.value;
     const userArea = form.userArea.value;
     const userCountry = form.userCountry.value;
@@ -55,7 +54,7 @@ const Page = ({ params }) => {
       userNumber,
       userAddress,
       paymentMethod,
-      ammount,
+      amount,
       userCity,
       userArea,
       userCountry,
@@ -63,7 +62,7 @@ const Page = ({ params }) => {
 
     try {
       const resp = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/checkOut/api/${param.id}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/checkOut/api/${id}`,
         userDetails,
         { headers: { "Content-Type": "application/json" } }
       );
@@ -74,7 +73,7 @@ const Page = ({ params }) => {
     } catch (error) {
       console.error(
         "Error submitting form:",
-        error.response?.data || error.message
+        error.response?.data || error.message || error
       );
     }
   };

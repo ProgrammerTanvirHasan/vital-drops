@@ -22,25 +22,26 @@ const Volunteers = () => {
               />
             </div>
             <div className="p-6 space-y-2">
-              <h2 className="text-xl font-semibold text-cyan-900">
+              <h2 className="text-xl font-semibold bg-white rounded-md shadow hover:shadow-2xl transition-shadow duration-300 hover:border hover:border-indigo-500 px-2 text-cyan-900">
                 {volunteer.name}
               </h2>
-              <p className="text-gray-700 font-medium">
+
+              <p className="text-gray-700 font-medium shadow hover:shadow-2xl transition-shadow duration-300 hover:border hover:border-indigo-500 px-2">
                 Role: {volunteer.role}
               </p>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-sm shadow hover:shadow-2xl transition-shadow duration-300 hover:border hover:border-indigo-500 px-2">
                 Joined: {volunteer.join_date}
               </p>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-sm shadow hover:shadow-2xl transition-shadow duration-300 hover:border hover:border-indigo-500 px-2">
                 Monthly Commitment: {volunteer.hours_committed_per_month} hours
               </p>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-sm shadow hover:shadow-2xl transition-shadow duration-300 hover:border hover:border-indigo-500 px-2">
                 Blood Drives Supported: {volunteer.blood_drives_supported}
               </p>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-sm shadow hover:shadow-2xl transition-shadow duration-300 hover:border hover:border-indigo-500 px-2">
                 Blood Units Collected: {volunteer.blood_units_collected}
               </p>
-              <p className="italic text-gray-500 mt-2">
+              <p className="italic text-gray-500 mt-2 shadow hover:shadow-2xl transition-shadow duration-300 hover:border hover:border-indigo-500 px-2">
                 "{volunteer.testimony}"
               </p>
             </div>

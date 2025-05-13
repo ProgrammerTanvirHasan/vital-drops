@@ -7,24 +7,34 @@ const AllPost = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [likedPosts, setLikedPosts] = useState({});
+  const [timeAgoMap, setTimeAgoMap] = useState({});
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const resp = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/allPost/api`
+          `${process.env.NEXT_PUBLIC_BASE_URL || ""}/allPost/api`
         );
         const data = await resp.json();
         const sorted = sortData(data);
         setPosts(sorted);
       } catch (error) {
-        console.error(error);
+        console.error("Failed to fetch posts:", error);
       } finally {
         setLoading(false);
       }
     };
     fetchPosts();
   }, []);
+
+  useEffect(() => {
+    // Client-side only time formatting
+    const map = {};
+    posts.forEach((post) => {
+      map[post._id] = formatTimeAgo(post.time);
+    });
+    setTimeAgoMap(map);
+  }, [posts]);
 
   const sortData = (data) => {
     return [...data].sort((a, b) => new Date(b.time) - new Date(a.time));
@@ -40,11 +50,10 @@ const AllPost = () => {
     if (diff < 86400) return `${Math.floor(diff / 3600)} hours ago`;
     if (diff < 604800) return `${Math.floor(diff / 86400)} days ago`;
 
-    return postDate.toLocaleDateString("en-GB", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    });
+    // Fallback to static format
+    return `${postDate.getDate()}/${
+      postDate.getMonth() + 1
+    }/${postDate.getFullYear()}`;
   };
 
   const toggleLike = (id) => {
@@ -89,7 +98,7 @@ const AllPost = () => {
           posts.map((post, index) => (
             <div
               key={post._id}
-              className="relative bg-white rounded-xl shadow-md hover:shadow-lg  overflow-hidden"
+              className="relative bg-white rounded-xl shadow-md hover:shadow-lg overflow-hidden"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="absolute -left-10 top-8 w-6 h-6 bg-gradient-to-br from-rose-500 to-rose-400 rounded-full border-4 border-white shadow-md z-10"></div>
@@ -132,7 +141,7 @@ const AllPost = () => {
                     </div>
                   </div>
                   <span className="text-xs font-medium text-gray-400 bg-gray-50 px-2 py-1 rounded-full">
-                    {formatTimeAgo(post.time)}
+                    {timeAgoMap[post._id] || ""}
                   </span>
                 </div>
 

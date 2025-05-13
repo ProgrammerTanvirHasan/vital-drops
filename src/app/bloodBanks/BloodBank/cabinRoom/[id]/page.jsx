@@ -8,8 +8,8 @@ const page = async ({ params }) => {
   const data = await resp.json();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-white text-gray-800">
-      <div className="min-w-full mx-auto shadow-xl rounded-b-2xl overflow-hidden bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-gray-100 mt-4 to-white text-gray-800">
+      <div className="container mx-auto shadow-xl rounded-b-2xl overflow-hidden bg-white">
         {data.ourCabin ? (
           <img
             src={data.ourCabin}

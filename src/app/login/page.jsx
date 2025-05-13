@@ -22,8 +22,8 @@ const Login = () => {
     const resp = await signIn("credentials", {
       email,
       password,
-      redirect: true,
-      callbackUrl: path ? path : "/",
+      redirect: false,
+      callbackUrl: path || "/",
     });
 
     if (resp?.error) {
@@ -32,22 +32,24 @@ const Login = () => {
         text: resp.error,
         icon: "error",
       });
-    } else {
+    } else if (resp?.ok) {
       Swal.fire({
-        title: "Logged In",
-        text: "Credential login successful",
+        title: "Success",
+        text: "Logged in successfully!",
         icon: "success",
+      }).then(() => {
+        window.location.href = resp.url || "/";
       });
     }
   };
 
   return (
-    <div className="min-h-screen w-full flex justify-center items-center bg-base-300 pt-4 pb-12">
-      <div className="w-[75vh] h-[100vh] border rounded-md shadow-md flex flex-col justify-center px-10 py-6">
-        <h2 className="text-2xl font-bold text-center text-red-800 mb-6 ">
+    <div className="min-h-screen w-full flex justify-center items-center bg-base-300 py-10">
+      <div className="w-full max-w-md border rounded-md shadow-md bg-white px-10 py-8">
+        <h2 className="text-2xl font-bold text-center text-red-800 mb-6">
           Welcome Back!
         </h2>
-        <form onSubmit={handleLogin} className="space-y-5 ">
+        <form onSubmit={handleLogin} className="space-y-5">
           <div>
             <label className="text-sm font-semibold text-gray-600">
               E-mail
@@ -59,6 +61,7 @@ const Login = () => {
               className="w-full border-b-2 border-gray-300 outline-none py-2 focus:border-red-500"
             />
           </div>
+
           <div className="relative">
             <label className="text-sm font-semibold text-gray-600">
               Password
@@ -77,15 +80,6 @@ const Login = () => {
             </div>
           </div>
 
-          <div className="text-right">
-            <Link
-              href="/forgot-password"
-              className="text-sm text-red-600 font-semibold"
-            >
-              Forgot password?
-            </Link>
-          </div>
-
           <button
             type="submit"
             className="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-full transition"
@@ -95,9 +89,7 @@ const Login = () => {
 
           <div className="flex items-center gap-2">
             <div className="flex-grow border-t"></div>
-            <span className="text-sm text-gray-500">
-              ........................................or......................................
-            </span>
+            <span className="text-sm text-gray-500">or</span>
             <div className="flex-grow border-t"></div>
           </div>
 

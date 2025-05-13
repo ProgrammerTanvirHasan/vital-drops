@@ -20,7 +20,7 @@ const BloodRequestForm = () => {
       attendantName: form.attendantName.value,
       attendentContact: form.attendentContact.value,
       additionalInfo: form.additionalInfo.value,
-      currentDate: new Date().toLocaleDateString(),
+      currentDate: new Date().toISOString().split("T")[0],
     };
 
     try {
@@ -66,7 +66,6 @@ const BloodRequestForm = () => {
               <input
                 type="text"
                 name="patientName"
-                defaultValue="patientName"
                 required
                 className="input w-full bg-base-300 text-black"
               />
@@ -78,7 +77,6 @@ const BloodRequestForm = () => {
               <input
                 type="number"
                 name="age"
-                defaultValue="00"
                 required
                 className="input w-full bg-base-300 text-black"
               />
@@ -114,7 +112,6 @@ const BloodRequestForm = () => {
               <input
                 type="number"
                 name="quantity"
-                defaultValue="2"
                 required
                 className="input w-full bg-base-300 text-black"
               />
@@ -150,7 +147,6 @@ const BloodRequestForm = () => {
               <input
                 type="text"
                 name="hospitalName"
-                defaultValue="hospitalName"
                 required
                 className="input w-full bg-base-300 text-black"
               />
@@ -162,7 +158,6 @@ const BloodRequestForm = () => {
               <input
                 type="text"
                 name="hospitalAddress"
-                defaultValue="hospitalAddress"
                 required
                 className="input w-full bg-base-300 text-black"
               />
@@ -177,7 +172,6 @@ const BloodRequestForm = () => {
               <input
                 type="tel"
                 name="contactNumber"
-                defaultValue="01700000000"
                 required
                 className="input w-full bg-base-300 text-black"
               />
@@ -189,7 +183,6 @@ const BloodRequestForm = () => {
               <input
                 type="text"
                 name="attendantName"
-                defaultValue="attendantName"
                 required
                 className="input w-full bg-base-300 text-black"
               />
@@ -203,7 +196,6 @@ const BloodRequestForm = () => {
             <input
               type="tel"
               name="attendentContact"
-              defaultValue="attendentContact"
               required
               className="input w-full bg-base-300 text-black"
             />
@@ -215,7 +207,6 @@ const BloodRequestForm = () => {
             </label>
             <textarea
               name="additionalInfo"
-              defaultValue="additionalInfo"
               required
               className="textarea w-full bg-base-300 text-black"
             />

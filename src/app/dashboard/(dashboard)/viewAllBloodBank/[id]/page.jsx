@@ -2,242 +2,222 @@
 
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
-
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-const page = () => {
-  const param = useParams();
-  const [data, setData] = useState([]);
+const UpdateBloodBank = () => {
+  const { id } = useParams();
+  const [data, setData] = useState(null);
   const router = useRouter();
-  const { id } = param;
 
   useEffect(() => {
-    const bloodBank = async () => {
+    if (!id) return;
+
+    const fetchBloodBank = async () => {
       try {
-        const resp = await fetch(
+        const res = await fetch(
           `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/api/${id}`
         );
-        if (!resp.ok) {
-          throw new Error("Failed to fetch blood bank data");
-        }
-        const response = await resp.json();
-        setData(response);
-      } catch (error) {
-        console.error("Error fetching data:", error);
+        if (!res.ok) throw new Error("Failed to fetch");
+
+        const result = await res.json();
+        setData(result);
+      } catch (err) {
+        console.error("Error fetching data:", err);
       }
     };
-    bloodBank();
+
+    fetchBloodBank();
   }, [id]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const name = form.name.value;
-    const contact = form.contact.value;
-    const email = form.email.value;
 
-    const blood_types = form.blood_types.value;
-    const hours = form.hours.value;
-    const FullAddress = form.FullAddress.value;
-    const additional_info = form.additional_info.value;
-    const cabinRent = form.cabinRent.value;
+    const updatedData = {
+      name: form.name.value,
+      contact: form.contact.value,
+      email: form.email.value,
+      blood_types: form.blood_types.value,
+      hours: form.hours.value,
+      FullAddress: form.FullAddress.value,
+      additional_info: form.additional_info.value,
+      cabinRent: form.cabinRent.value,
+      updatedAt: new Date().toISOString(), // date added
+    };
+
     const imageFile = form.image.files[0];
-
-    let ourCabin = data.ourCabin;
-
     if (imageFile) {
       const formData = new FormData();
       formData.append("image", imageFile);
       try {
-        const imgResponse = await axios.post(
+        const imageUpload = await axios.post(
           `https://api.imgbb.com/1/upload?key=a9b9160b05e3d4e68e60f154f621c349`,
           formData
         );
-
-        if (imgResponse.data && imgResponse.data.data) {
-          ourCabin = imgResponse.data.data.display_url;
-        }
-      } catch (error) {
-        console.error("Image upload failed:", error);
+        updatedData.ourCabin = imageUpload?.data?.data?.display_url;
+      } catch (err) {
+        console.error("Image upload failed", err);
       }
+    } else {
+      updatedData.ourCabin = data?.ourCabin || "";
     }
 
-    const bankUpdate = {
-      name,
-      contact,
-      email,
-      blood_types,
-      hours,
-      additional_info,
-      FullAddress,
-      cabinRent,
-      ourCabin,
-    };
-
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/api/${data._id}
-`,
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/bloodBanks/BloodBank/api/${data?._id}`,
         {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(bankUpdate),
+          body: JSON.stringify(updatedData),
         }
       );
-      if (response.status === 200) {
-        Swal.fire({
-          title: "UPDATED",
-          text: "updated seccessfully",
-          icon: "success",
-        });
+
+      if (res.ok) {
+        Swal.fire("Updated", "Blood bank updated successfully", "success");
         router.push("/");
+      } else {
+        throw new Error("Failed to update");
       }
-    } catch (error) {
-      Swal.fire({
-        title: "Error",
-        text: "Something went wrong",
-        icon: "error",
-      });
+    } catch (err) {
+      Swal.fire("Error", err.message || "Something went wrong", "error");
     }
   };
-  return (
-    <div>
-      <h1 className="text-3xl text-red-600 text-center mb-8">
-        Update Blood Bank Info
-      </h1>
 
-      <div className=" px-4">
-        <form onSubmit={handleUpdate}>
-          <div className="lg:flex justify-between">
-            <div className="relative mb-4">
-              <label>
-                <p>Enter Blood Bank Name</p>
+  if (!data) {
+    return <div className="text-center py-10 min-h-screen">Please wait...</div>;
+  }
+
+  return (
+    <div className="min-h-screen  py-10 px-4">
+      <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8">
+        <h1 className="text-3xl font-bold text-center text-red-600 mb-10">
+          Update Blood Bank Info
+        </h1>
+
+        <form onSubmit={handleUpdate} className="space-y-6">
+          {/* Row 1 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="text-gray-700 font-medium">
+                Blood Bank Name
               </label>
               <input
                 name="name"
                 defaultValue={data.name}
-                type="text"
-                placeholder="Blood Bank Name"
-                className="p-2 w-80 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
+                required
+                className="mt-1 w-full p-3 border border-gray-300 rounded-lg bg-slate-100 text-black outline-none"
               />
             </div>
-
-            <div className="relative mb-4">
-              <label>
-                <p>Contact Number</p>
+            <div>
+              <label className="text-gray-700 font-medium">
+                Contact Number
               </label>
               <input
                 name="contact"
                 defaultValue={data.contact}
-                type="text"
-                placeholder="Contact Number"
-                className="p-2 w-80 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
+                required
+                className="mt-1 w-full p-3 border border-gray-300 rounded-lg bg-slate-100 text-black outline-none"
               />
             </div>
           </div>
 
-          <div className="lg:flex justify-between">
-            <div className="relative mb-4">
-              <label>
-                <p>Email Address</p>
-              </label>
+          {/* Row 2 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="text-gray-700 font-medium">Email</label>
               <input
                 name="email"
                 defaultValue={data.email}
                 type="email"
-                placeholder="Email Address"
-                className="p-2 w-80 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
+                required
+                className="mt-1 w-full p-3 border border-gray-300 rounded-lg bg-slate-100 text-black outline-none"
               />
             </div>
-
-            <div className="relative mb-4">
-              <label>
-                <p>Cabin rent</p>
+            <div>
+              <label className="text-gray-700 font-medium">
+                Cabin Rent (৳)
               </label>
               <input
                 name="cabinRent"
                 defaultValue={data.cabinRent}
                 type="number"
-                placeholder="Enter cabin rent"
-                className="p-2 w-80 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
+                className="mt-1 w-full p-3 border border-gray-300 rounded-lg bg-slate-100 text-black outline-none"
               />
             </div>
           </div>
 
-          <div className="lg:flex justify-between">
-            <div className="relative mb-4">
-              <label>
-                <p>Complete Address</p>
-              </label>
+          {/* Row 3 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="text-gray-700 font-medium">Address</label>
               <input
                 name="FullAddress"
                 defaultValue={data.FullAddress}
-                type="text"
-                placeholder="Complete address"
-                className="p-2 w-80 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
+                className="mt-1 w-full p-3 border border-gray-300 rounded-lg bg-slate-100 text-black outline-none"
               />
             </div>
-            <div className="relative mb-4">
-              <label>
-                <p>Our cabin room</p>
+            <div>
+              <label className="text-gray-700 font-medium">
+                Upload New Cabin Image
               </label>
               <input
                 name="image"
                 type="file"
-                className="p-2 w-80 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
+                accept="image/*"
+                className="mt-1 w-full p-3 border border-gray-300 rounded-lg bg-slate-100 text-black outline-none"
               />
+              {data?.ourCabin && (
+                <img
+                  src={data.ourCabin}
+                  alt="Cabin"
+                  className="w-32 h-auto mt-3 rounded-lg shadow-md"
+                />
+              )}
             </div>
           </div>
 
-          <div className="lg:flex justify-between">
-            <div className="relative mb-4">
-              <label>
-                <p>Available Blood Types</p>
+          {/* Row 4 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="text-gray-700 font-medium">
+                Available Blood Types
               </label>
               <input
                 name="blood_types"
                 defaultValue={data.blood_types}
-                type="text"
-                placeholder="Available blood types (e.g., A+, B-, O+)"
-                className="p-2 w-80 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
+                className="mt-1 w-full p-3 border border-gray-300 rounded-lg bg-slate-100 text-black outline-none"
+              />
+            </div>
+            <div>
+              <label className="text-gray-700 font-medium">Opening Hours</label>
+              <input
+                name="hours"
+                defaultValue={data.hours}
+                className="mt-1 w-full p-3 border border-gray-300 rounded-lg bg-slate-100 text-black outline-none"
               />
             </div>
           </div>
 
-          <div className="relative mb-4">
-            <label>
-              <p>Opening Hours</p>
-            </label>
-            <input
-              name="hours"
-              defaultValue={data.hours}
-              type="text"
-              placeholder="Enter opening hours"
-              className="p-2 w-80 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
-            />
-          </div>
-
-          <div className="relative mb-4">
-            <label>
-              <p>Additional Information</p>
-            </label>
+          {/* Additional Info */}
+          <div>
+            <label className="text-gray-700 font-medium">Additional Info</label>
             <textarea
               name="additional_info"
               defaultValue={data.additional_info}
-              placeholder="Enter any additional information"
-              className="p-2 w-80 h-32 border focus:ring-2 bg-slate-700 glass ring-blue-400 text-white rounded-md outline-none"
+              className="mt-1 w-full p-3 border border-gray-300 rounded-lg bg-slate-100 text-black outline-none h-24"
             />
           </div>
 
-          <div className="text-center pb-4">
+          {/* Submit */}
+          <div className="text-center pt-4">
             <button
               type="submit"
-              className="px-4 py-2 bg-cyan-800 text-white w-full rounded-md hover:bg-blue-600 "
+              className="w-full md:w-1/2 bg-gradient-to-r from-cyan-700 to-blue-600 hover:from-blue-800 hover:to-cyan-800 text-white py-3 rounded-xl font-semibold transition duration-300"
             >
-              Update
+              Update Info
             </button>
           </div>
         </form>
@@ -245,4 +225,5 @@ const page = () => {
     </div>
   );
 };
-export default page;
+
+export default UpdateBloodBank;
