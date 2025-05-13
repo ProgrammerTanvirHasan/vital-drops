@@ -7,7 +7,7 @@ export const POST = async (request) => {
   try {
     const userDetails = await request.json();
 
-    // Validate required fields
+   
     const requiredFields = [
       "userName",
       "userEmail",
@@ -88,7 +88,7 @@ export const POST = async (request) => {
       );
     }
 
-    // Save payment record
+   
     const db = await connectDB();
     const paymentCollection = db.collection("payment");
 

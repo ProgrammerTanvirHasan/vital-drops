@@ -28,7 +28,7 @@ const AllPost = () => {
   }, []);
 
   useEffect(() => {
-    // Client-side only time formatting
+  
     const map = {};
     posts.forEach((post) => {
       map[post._id] = formatTimeAgo(post.time);
@@ -50,7 +50,7 @@ const AllPost = () => {
     if (diff < 86400) return `${Math.floor(diff / 3600)} hours ago`;
     if (diff < 604800) return `${Math.floor(diff / 86400)} days ago`;
 
-    // Fallback to static format
+    
     return `${postDate.getDate()}/${
       postDate.getMonth() + 1
     }/${postDate.getFullYear()}`;

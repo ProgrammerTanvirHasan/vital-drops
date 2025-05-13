@@ -1,16 +1,16 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation"; // For Next.js 13 and newer (app directory)
-import { useEffect, useState } from "react"; // For older versions using pages directory
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react"; 
 
 const SocialSignIn = () => {
   const [redirectPath, setRedirectPath] = useState("/");
 
-  // For Next.js 13+ with app directory
+  
   const searchParams = useSearchParams();
 
-  // For older versions of Next.js (pages directory)
+  
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const path = params.get("redirect");

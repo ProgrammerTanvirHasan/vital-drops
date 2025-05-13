@@ -34,9 +34,9 @@ export default function RootLayout({ children }) {
     <div className={popins.className}>
       <AuthProvider>
         <div className="lg:flex">
-          {/* Sidebar */}
+         
           <div className="flex flex-col bg-cyan-800 text-white min-h-screen lg:w-80 shadow-lg">
-            {/* Dashboard Title */}
+          
             <div className="bg-white text-cyan-700 font-bold p-4 rounded-l-full shadow mb-4">
               <p className="flex items-center">
                 <RiDashboard2Fill className="text-2xl mr-2" />
@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
               </p>
             </div>
 
-            {/* Admin Links */}
+         
             <div className="px-4">
               <div className="flex gap-2 py-2 items-center">
                 <RiAdminLine className="text-2xl" />
@@ -70,7 +70,7 @@ export default function RootLayout({ children }) {
               </div>
             </div>
 
-            {/* User Links */}
+           
             <div className="px-4">
               <div className="flex gap-2 py-2 items-center">
                 <FaUsers className="text-2xl" />
@@ -97,7 +97,7 @@ export default function RootLayout({ children }) {
             </div>
           </div>
 
-          {/* Main Content */}
+         
           <div className="flex-1 bg-gray-100 min-h-screen p-4">{children}</div>
         </div>
       </AuthProvider>
